@@ -12,7 +12,7 @@ function Landing() {
                 }
             </header>
             <nav id="navbar" className="w-full">
-                <div className="w-full max-w-6xl flex justify-between items-center mx-auto p-8">
+                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
                     <div id="navbar-logo">
                         <img src="/images/logo.png" alt="Hypecut Logo" className="w-auto h-[37px]" />
                     </div>
@@ -32,8 +32,8 @@ function Landing() {
                     </div>
                 </div>
             </nav>
-            <section id="hero">
-                <div className="px-8 w-full max-w-6xl mx-auto grid grid-cols-2 gap-4 items-center">
+            <section id="hero" className="min-h-[90vh] pt-8 pb-20">
+                <div className="px-8 w-full xl:max-w-7xl mx-auto grid grid-cols-2 gap-4 items-center">
                     <div>
                         <h1 className="text-[42px] leading-tight font-bold uppercase">Transform Your Footages Into Professional-Grade And Catchy Videos</h1>
                         <p className="py-4 text-[24px] font-medium">Quick Turnaround And Exceptional Quality Guaranteed</p>
@@ -47,6 +47,87 @@ function Landing() {
                         <img src="/images/hero-cover.png" alt="Hero Image" className="w-full h-auto" />
                     </div>
                 </div>
+            </section>
+            <section className="w-full bg-black -mt-7 rounded-t-2xl">
+                <section className="flex gap-4 overflow-hidden pt-14 pb-8">
+                    {["company1.png", "company2.png", "company3.png", "company4.png", "company5.png", "company6.png", "company7.png"].map((item, index) => (
+                        <img key={index} src={`/images/${item}`} alt="Company Logo" className="w-auto h-[50px] mx-4" />
+                    ))
+                    }
+                </section>
+
+                <section className="w-full xl:max-w-7xl mx-auto p-8 grid grid-cols-3 gap-6">
+                    {
+                        [
+                            {
+                                count: "45+",
+                                title: "Clients",
+                                description: "We served our clients well enough to get these number of clients."
+                            },
+                            {
+                                count: "160+",
+                                title: "Projects",
+                                description: "We served our clients well enough to get these number of clients."
+                            },
+                            {
+                                count: "100%",
+                                title: "Commitment",
+                                description: "We served our clients well enough to get these number of clients."
+                            }
+                        ].map((item, index) => (
+                            <div key={index} className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8">
+                                <p className="text-5xl font-bold">{item.count}</p>
+                                <p className="text-2xl text-[#fcde02] font-medium uppercase mt-6">{item.title}</p>
+                                <p className="text-lg font-[300]">{item.description}</p>
+                            </div>
+                        ))
+                    }</section>
+
+                <section className="p-8">
+                    <h1 className="text-3xl uppercase font-medium text-white w-full max-w-xl mx-auto text-center">
+                        <span className="text-[#fcde02]">Exclusive Benefits</span> You Will Get By Working <span className="text-[#fcde02]">With Us</span>
+                    </h1>
+
+                    <div className="w-full max-w-4xl mx-auto grid grid-cols-3 gap-6 gap-y-12 mt-12">
+                        {
+                            [
+                                {
+                                    icon: "icon1.png",
+                                    title: "Unlimited Editing and Revisions",
+                                    description: "No hidden fees. Perfect your content with endless revisions, all within one package"
+                                },
+                                {
+                                    icon: "icon2.png",
+                                    title: "Fast Turnaround Time",
+                                    description: "Stay agile with 1-2 day turnaround for your first draft. Professional results, faster."
+                                },
+                                {
+                                    icon: "icon3.png",
+                                    title: "Strategic Insights",
+                                    description: "Blend video expertise with market trends. Craft content that resonates and drives result."
+                                }, {
+                                    icon: "icon4.png",
+                                    title: "Dedicated Editors",
+                                    description: "Our team is always ready to assist you with any questions or concerns"
+                                }, {
+                                    icon: "icon5.png",
+                                    title: "Free Resources",
+                                    description: "If you're not satisfied with our service, we will refund your money"
+                                }, {
+                                    icon: "icon6.png",
+                                    title: "Ready for Social",
+                                    description: "We use secure payment gateways to ensure your payment is safe"
+                                }
+                            ].map((item, index) => (
+                                <div key={index} className="flex flex-col gap-4 text-white h-full">
+                                    <img src={`/images/${item.icon}`} alt="Icon" className="w-fit h-[50px] -ml-2" />
+                                    <p className="text-2xl font-medium leading-7 py-3">{item.title}</p>
+                                    <p className="text-lg font-[300]">{item.description}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </section>
             </section>
         </>
     )
