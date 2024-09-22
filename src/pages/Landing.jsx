@@ -2,7 +2,7 @@
 function Landing() {
     return (
         <>
-            <div id="banner-of-header" className="w-full bg-[#ef1d25] text-white text-[14px] tracking-widest font-medium uppercase py-1.5 flex items-center gap-4 whitespace-nowrap">
+            <header id="header" className="w-full bg-[#ef1d25] text-white text-[14px] tracking-widest font-medium uppercase py-1.5 flex items-center gap-4 whitespace-nowrap">
                 {
                     ["Free First Video", "7 Days Free Trial", "100% Money-Back Guarantee"].map((item, index) => (
                         <div key={index} className="flex items-center gap-4">
@@ -10,9 +10,9 @@ function Landing() {
                         </div>
                     ))
                 }
-            </div>
-            <div id="navbar" className="w-full py-8">
-                <div className="w-full max-w-6xl flex justify-between items-center mx-auto">
+            </header>
+            <nav id="navbar" className="w-full">
+                <div className="w-full max-w-6xl flex justify-between items-center mx-auto p-8">
                     <div id="navbar-logo">
                         <img src="/images/logo.png" alt="Hypecut Logo" className="w-auto h-[37px]" />
                     </div>
@@ -31,7 +31,23 @@ function Landing() {
                         <button className="bg-[#ef1d25] text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 border-[2.5px] border-black">Book a Demo</button>
                     </div>
                 </div>
-            </div>
+            </nav>
+            <section id="hero">
+                <div className="px-8 w-full max-w-6xl mx-auto grid grid-cols-2 gap-4 items-center">
+                    <div>
+                        <h1 className="text-[42px] leading-tight font-bold uppercase">Transform Your Footages Into Professional-Grade And Catchy Videos</h1>
+                        <p className="py-4 text-[24px] font-medium">Quick Turnaround And Exceptional Quality Guaranteed</p>
+
+                        <div className="flex gap-4 mt-5">
+                            <button className="bg-[#ef1d25] text-white text-[18px] font-bold uppercase tracking-widest py-2 px-6">See the Pricing</button>
+                            <button className="bg-transparent border-[2.5px] border-black text-[18px] font-bold uppercase tracking-widest py-2 px-6">Watch How It Works</button>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/hero-cover.png" alt="Hero Image" className="w-full h-auto" />
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
