@@ -49,7 +49,7 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="flex gap-4 overflow-hidden pt-14 pb-8">
+                <section className="flex gap-4 overflow-hidden whitespace-nowrap pt-14 pb-8">
                     {["company1.png", "company2.png", "company3.png", "company4.png", "company5.png", "company6.png", "company7.png"].map((item, index) => (
                         <img key={index} src={`/images/${item}`} alt="Company Logo" className="w-auto h-[50px] mx-4" />
                     ))
@@ -83,8 +83,8 @@ function Landing() {
                         ))
                     }</section>
 
-                <section className="p-8">
-                    <h1 className="text-3xl uppercase font-medium text-white w-full max-w-xl mx-auto text-center">
+                <section className="p-8 pb-16">
+                    <h1 className="text-3xl uppercase font-bold text-white w-full max-w-xl mx-auto text-center">
                         <span className="text-[#fcde02]">Exclusive Benefits</span> You Will Get By Working <span className="text-[#fcde02]">With Us</span>
                     </h1>
 
@@ -108,15 +108,15 @@ function Landing() {
                                 }, {
                                     icon: "icon4.png",
                                     title: "Dedicated Editors",
-                                    description: "Our team is always ready to assist you with any questions or concerns"
+                                    description: "Your own video professional, ready for real-time chats and aligned with your brand."
                                 }, {
                                     icon: "icon5.png",
                                     title: "Free Resources",
-                                    description: "If you're not satisfied with our service, we will refund your money"
+                                    description: "Enhance your videos with stock footage, music, and graphics at no extra cost."
                                 }, {
                                     icon: "icon6.png",
                                     title: "Ready for Social",
-                                    description: "We use secure payment gateways to ensure your payment is safe"
+                                    description: "Tailored videos for Instagram reels, Tiktok content, Facebook stories, and more. Stand out on every platform."
                                 }
                             ].map((item, index) => (
                                 <div key={index} className="flex flex-col gap-4 text-white h-full">
@@ -128,6 +128,62 @@ function Landing() {
                         }
                     </div>
                 </section>
+            </section>
+            <section className="py-8">
+                <div className="flex gap-8 justify-center pt-4 overflow-hidden whitespace-nowrap">
+                    {
+                        [1, 2, 3, 4, 5].map((item, index) => (
+                            <h1 className={index % 2 == 0 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Process</h1>
+                        ))
+                    }
+                </div>
+
+                <h1 className="mt-12 max-w-md mx-auto text-3xl text-center uppercase font-bold">Get Your Video Done In These <span className="text-[#ef1d25]">5 Easy Steps</span></h1>
+
+                <section className="max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 justify-center">
+                    {
+                        [{
+                            icon: "img1.png",
+                            titleComponent: <><span className="text-[#ef1d25]">1. Create</span> Your Video</>
+                        }, {
+                            icon: "img2.png",
+                            titleComponent: <>2. Discovery <span className="text-[#ef1d25]">Call</span></>
+                        }, {
+                            icon: "img3.png",
+                            titleComponent: <><span className="text-[#ef1d25]">3. Upload</span> the Video</>
+                        }, {
+                            icon: "img4.png",
+                            titleComponent: <>4. We Do the <span className="text-[#ef1d25]">Edits</span></>
+                        }, {
+                            icon: "img5.png",
+                            titleComponent: <>5. Get Your <span className="text-[#ef1d25]">Video</span></>
+                        }].map((item, index) => (
+                            <div key={index} className="flex flex-col gap-4 items-center w-full sm:w-1/2 md:w-[calc(33.33%-1rem)]">
+                                <img src={`/images/${item.icon}`} alt="Icon" className="w-auto h-[200px] object-contain" />
+                                <p className="text-lg font-medium uppercase">{item.titleComponent}</p>
+                            </div>
+                        ))
+                    }
+                </section>
+
+
+                <p className="mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">Beim Discovery Call schauen wir erstmal, ob es denn auch klick macht zwischen uns. D.h. wir lernen uns ein wenig besser kennen. Eine vertrauensvolle Zusammenarbeit ist mir wichtig. Denn sie macht nicht nur mehr Spaß, sondern führt auch zu einem erfolgreichem Ergebnis.</p>
+            </section>
+            <section className="py-8">
+                <div className="flex gap-8 justify-center pt-4 overflow-hidden whitespace-nowrap">
+                    {
+                        [1, 2, 3, 4].map((item, index) => (
+                            <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Our Services</h1>
+                        ))
+                    }
+                </div>
+
+                <div className="flex gap-4">
+                    <div>
+                        <h1>The exclusive services you are going to get </h1>
+                        <p>Captivate Your Audience By:</p>
+                    </div>
+                </div>
             </section>
         </>
     )
