@@ -1,15 +1,43 @@
+import Marquee from "react-fast-marquee";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
 
 function Landing() {
+    const textTrigger1 = useRef(null);
+    const textTrigger2 = useRef(null);
+    const text1 = useRef(null);
+    const text2 = useRef(null);
+
+    const makeMove = (element, trigger) => {
+        gsap.to(element, {
+            x: 200,
+            scrollTrigger: {
+                trigger: trigger,
+                start: "top bottom",
+                end: "+=1000",
+                scrub: 0.5
+            },
+        });
+    }
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        makeMove(text1.current, textTrigger1.current);
+        makeMove(text2.current, textTrigger2.current);
+    }, []);
+
     return (
         <>
-            <header id="header" className="w-full bg-[#ef1d25] text-white text-[14px] tracking-widest font-medium uppercase py-1.5 flex items-center gap-4 whitespace-nowrap">
-                {
-                    ["Free First Video", "7 Days Free Trial", "100% Money-Back Guarantee"].map((item, index) => (
-                        <div key={index} className="flex items-center gap-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={13} height={13} className="fill-[#fcde02]"><path d="M192 32c17.7 0 32 14.3 32 32l0 135.5 111.5-66.9c15.2-9.1 34.8-4.2 43.9 11s4.2 34.8-11 43.9L254.2 256l114.3 68.6c15.2 9.1 20.1 28.7 11 43.9s-28.7 20.1-43.9 11L224 312.5 224 448c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-135.5L48.5 379.4c-15.2 9.1-34.8 4.2-43.9-11s-4.2-34.8 11-43.9L129.8 256 15.5 187.4c-15.2-9.1-20.1-28.7-11-43.9s28.7-20.1 43.9-11L160 199.5 160 64c0-17.7 14.3-32 32-32z" /></svg> {item}
-                        </div>
-                    ))
-                }
+            <header id="header" className="w-full bg-[#ef1d25] text-white text-[14px] tracking-widest font-medium uppercase py-1.5 whitespace-nowrap">
+                <Marquee>
+                    {
+                        ["Free First Video", "7 Days Free Trial", "100% Money-Back Guarantee", "Free First Video", "7 Days Free Trial", "100% Money-Back Guarantee"].map((item, index) => (
+                            <div key={index} className="flex items-center gap-4 mx-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={13} height={13} className="fill-[#fcde02]"><path d="M192 32c17.7 0 32 14.3 32 32l0 135.5 111.5-66.9c15.2-9.1 34.8-4.2 43.9 11s4.2 34.8-11 43.9L254.2 256l114.3 68.6c15.2 9.1 20.1 28.7 11 43.9s-28.7 20.1-43.9 11L224 312.5 224 448c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-135.5L48.5 379.4c-15.2 9.1-34.8 4.2-43.9-11s-4.2-34.8 11-43.9L129.8 256 15.5 187.4c-15.2-9.1-20.1-28.7-11-43.9s28.7-20.1 43.9-11L160 199.5 160 64c0-17.7 14.3-32 32-32z" /></svg> {item}
+                            </div>
+                        ))
+                    }</Marquee>
             </header>
             <nav id="navbar" className="w-full">
                 <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
@@ -75,7 +103,7 @@ function Landing() {
                                 description: "We served our clients well enough to get these number of clients."
                             }
                         ].map((item, index) => (
-                            <div key={index} className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8">
+                            <div key={index} className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15">
                                 <p className="text-5xl font-bold">{item.count}</p>
                                 <p className="text-2xl text-[#fcde02] font-medium uppercase mt-6">{item.title}</p>
                                 <p className="text-lg font-[300]">{item.description}</p>
@@ -129,13 +157,15 @@ function Landing() {
                     </div>
                 </section>
             </section>
-            <section className="py-8">
-                <div className="flex gap-8 justify-center pt-4 overflow-hidden whitespace-nowrap">
-                    {
-                        [1, 2, 3, 4, 5].map((item, index) => (
-                            <h1 className={index % 2 == 0 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Process</h1>
-                        ))
-                    }
+            <section className="py-8" ref={textTrigger1}>
+                <div className="w-full overflow-hidden">
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={text1}>
+                        {
+                            [1, 2, 3, 4, 5, 6].map((item, index) => (
+                                <h1 className={index % 2 == 0 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Process</h1>
+                            ))
+                        }
+                    </div>
                 </div>
 
                 <h1 className="mt-12 max-w-md mx-auto text-3xl text-center uppercase font-bold">Get Your Video Done In These <span className="text-[#ef1d25]">5 Easy Steps</span></h1>
@@ -169,13 +199,15 @@ function Landing() {
 
                 <p className="mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">Beim Discovery Call schauen wir erstmal, ob es denn auch klick macht zwischen uns. D.h. wir lernen uns ein wenig besser kennen. Eine vertrauensvolle Zusammenarbeit ist mir wichtig. Denn sie macht nicht nur mehr Spaß, sondern führt auch zu einem erfolgreichem Ergebnis.</p>
             </section>
-            <section className="py-8">
-                <div className="flex gap-8 justify-center pt-4 overflow-hidden whitespace-nowrap">
-                    {
-                        [1, 2, 3, 4].map((item, index) => (
-                            <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Our Services</h1>
-                        ))
-                    }
+            <section className="py-8" ref={textTrigger2}>
+                <div className="w-full overflow-hidden">
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={text2}>
+                        {
+                            [1, 2, 3, 4, 5].map((item, index) => (
+                                <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Our Services</h1>
+                            ))
+                        }
+                    </div>
                 </div>
 
                 <div className="flex gap-4">
