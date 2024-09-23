@@ -46,7 +46,7 @@ function Landing() {
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="flex items-center gap-8 text-sm font-medium uppercase tracking-widest border-[2.5px] border-black">
+                        <ul className="items-center gap-8 text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex">
                             {
                                 ["Home", "Pricing", "About Us"].map((item, index) => (
                                     <li key={index} className={(index == 0 && "text-white bg-[#ef1d25]")}><p className="py-1.5 px-5">{item}</p></li>
@@ -61,7 +61,7 @@ function Landing() {
                 </div>
             </nav>
             <section id="hero" className="min-h-[90vh] pt-8 pb-20">
-                <div className="px-8 w-full xl:max-w-7xl mx-auto grid grid-cols-2 gap-4 items-center">
+                <div className="px-8 w-full xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
                     <div>
                         <h1 className="text-[42px] leading-tight font-bold uppercase">Transform Your Footages Into Professional-Grade And Catchy Videos</h1>
                         <p className="py-4 text-[24px] font-medium">Quick Turnaround And Exceptional Quality Guaranteed</p>
@@ -84,7 +84,7 @@ function Landing() {
                     }
                 </section>
 
-                <section className="w-full xl:max-w-7xl mx-auto p-8 grid grid-cols-3 gap-6">
+                <section className="w-full xl:max-w-7xl mx-auto p-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {
                         [
                             {
@@ -116,7 +116,7 @@ function Landing() {
                         <span className="text-[#fcde02]">Exclusive Benefits</span> You Will Get By Working <span className="text-[#fcde02]">With Us</span>
                     </h1>
 
-                    <div className="w-full max-w-4xl mx-auto grid grid-cols-3 gap-6 gap-y-12 mt-12">
+                    <div className="w-full max-w-4xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-12 mt-12">
                         {
                             [
                                 {
@@ -188,7 +188,7 @@ function Landing() {
                             icon: "img5.png",
                             titleComponent: <>5. Get Your <span className="text-[#ef1d25]">Video</span></>
                         }].map((item, index) => (
-                            <div key={index} className="flex flex-col gap-4 items-center w-full sm:w-1/2 md:w-[calc(33.33%-1rem)]">
+                            <div key={index} className="flex flex-col gap-4 items-center w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1rem)]">
                                 <img src={`/images/${item.icon}`} alt="Icon" className="w-auto h-[200px] object-contain" />
                                 <p className="text-lg font-medium uppercase">{item.titleComponent}</p>
                             </div>
@@ -210,10 +210,57 @@ function Landing() {
                     </div>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
                     <div>
-                        <h1>The exclusive services you are going to get </h1>
-                        <p>Captivate Your Audience By:</p>
+                        <h1 className="text-3xl uppercase font-bold">The exclusive <span className="text-[#ef1d25]">services</span> you are going to <span className="text-[#ef1d25]">get</span></h1>
+                        <p className="font-medium mt-5 text-lg">Captivate Your Audience By:</p>
+                        <div className="ps-6 mt-4">{
+                            [{
+                                icon: "ic1.svg",
+                                title: "Eye Catching Visual",
+                            }, {
+                                icon: "ic2.svg",
+                                title: "Emojis, Gifs, Images",
+                            }, {
+                                icon: "ic3.svg",
+                                title: "Video Stabilization",
+                            }, {
+                                icon: "ic4.svg",
+                                title: "Trending Music + Foley Sounds Effects",
+                            }, {
+                                icon: "ic5.svg",
+                                title: "Trending Content",
+                            }, {
+                                icon: "ic6.svg",
+                                title: "Trimming + Cut the Fluff"
+                            }, {
+                                icon: "ic7.svg",
+                                title: "Subtitling + Captions"
+                            }, {
+                                icon: "ic8.svg",
+                                title: "Zooms + Pans + Cuts + Transitions"
+                            }, {
+                                icon: "ic9.svg",
+                                title: "Call to Action Enhancement"
+                            }].map((item, index) => (
+                                <div key={index} className="flex gap-4 mt-2.5">
+                                    <img src={`/images/${item.icon}`} alt="Icon" className="w-auto w-[20px] h-[20px]" />
+                                    <p className="text-sm">{item.title}</p>
+                                </div>
+                            ))
+                        }</div>
+                        <p className="text-sm mt-4">Our edits will follow any style and format you want for proven success. If you require a different style please <span className="text-[#ef1d25] font-medium">message us</span> or <span className="text-[#ef1d25] font-medium">book a call</span> before ordering.</p>
+                    </div>
+                    <div className="border-2 border-black p-8 h-fit">
+                        <h1 className="text-2xl font-medium leading-6"><span className="text-[#ef1d25]">Repurpose</span> Longform Content</h1>
+                        <hr className="my-4 border-[1px] border-black" />
+                        <p className="text-sm">Repurpose new or existing longform content i.e podcasts of YouTube Videos into clips for TikTok, Reels or YouTube Shorts. Each clip produced counts as 1 monthly edit credit.</p>
+ 
+                        <h1 className="text-2xl font-medium leading-6 mt-8">Grow Faster With A <span className="text-[#ef1d25]">CTA</span></h1>
+                        <hr className="my-4 border-[1px] border-black" />
+                        <p className="text-sm">Repurpose new or existing longform content i.e podcasts of YouTube Videos into clips for TikTok, Reels or YouTube Shorts. Each clip produced counts as 1 monthly edit credit.</p>
+
+                        <button className="bg-[#ef1d25] text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 mt-7">Order Edit</button>
                     </div>
                 </div>
             </section>
