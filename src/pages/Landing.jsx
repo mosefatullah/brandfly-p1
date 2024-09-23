@@ -4,10 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
 function Landing() {
-    const textTrigger1 = useRef(null);
-    const textTrigger2 = useRef(null);
-    const text1 = useRef(null);
-    const text2 = useRef(null);
+    const textTriggers = [useRef(null), useRef(null), useRef(null), useRef(null)];
+    const texts = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
     const makeMove = (element, trigger) => {
         gsap.to(element, {
@@ -23,9 +21,9 @@ function Landing() {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
-        makeMove(text1.current, textTrigger1.current);
-        makeMove(text2.current, textTrigger2.current);
+        texts.forEach((text, index) => makeMove(text.current, textTriggers[index].current));
     }, []);
+
 
     return (
         <>
@@ -157,12 +155,12 @@ function Landing() {
                     </div>
                 </section>
             </section>
-            <section className="py-8" ref={textTrigger1}>
-                <div className="w-full overflow-hidden">
-                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={text1}>
+            <section className="py-8">
+                <div className="w-full overflow-hidden" ref={textTriggers[0]}>
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={texts[0]}>
                         {
                             [1, 2, 3, 4, 5, 6].map((item, index) => (
-                                <h1 className={index % 2 == 0 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Process</h1>
+                                <h1 className={index % 2 == 0 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke-red"} key={index}>Process</h1>
                             ))
                         }
                     </div>
@@ -173,19 +171,19 @@ function Landing() {
                 <section className="max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 justify-center">
                     {
                         [{
-                            icon: "img1.png",
+                            icon: "step1.svg",
                             titleComponent: <><span className="text-[#ef1d25]">1. Create</span> Your Video</>
                         }, {
-                            icon: "img2.png",
+                            icon: "step2.svg",
                             titleComponent: <>2. Discovery <span className="text-[#ef1d25]">Call</span></>
                         }, {
-                            icon: "img3.png",
+                            icon: "step3.svg",
                             titleComponent: <><span className="text-[#ef1d25]">3. Upload</span> the Video</>
                         }, {
-                            icon: "img4.png",
+                            icon: "step4.svg",
                             titleComponent: <>4. We Do the <span className="text-[#ef1d25]">Edits</span></>
                         }, {
-                            icon: "img5.png",
+                            icon: "step5.svg",
                             titleComponent: <>5. Get Your <span className="text-[#ef1d25]">Video</span></>
                         }].map((item, index) => (
                             <div key={index} className="flex flex-col gap-4 items-center w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1rem)]">
@@ -199,18 +197,18 @@ function Landing() {
 
                 <p className="mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">Beim Discovery Call schauen wir erstmal, ob es denn auch klick macht zwischen uns. D.h. wir lernen uns ein wenig besser kennen. Eine vertrauensvolle Zusammenarbeit ist mir wichtig. Denn sie macht nicht nur mehr Spaß, sondern führt auch zu einem erfolgreichem Ergebnis.</p>
             </section>
-            <section className="py-8" ref={textTrigger2}>
-                <div className="w-full overflow-hidden">
-                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={text2}>
+            <section className="py-8 pb-24">
+                <section className="w-full overflow-hidden" ref={textTriggers[1]}>
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={texts[1]}>
                         {
                             [1, 2, 3, 4, 5].map((item, index) => (
-                                <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke"} key={index}>Our Services</h1>
+                                <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke-red"} key={index}>Our Services</h1>
                             ))
                         }
                     </div>
-                </div>
+                </section>
 
-                <div className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
+                <section className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
                     <div>
                         <h1 className="text-3xl uppercase font-bold">The exclusive <span className="text-[#ef1d25]">services</span> you are going to <span className="text-[#ef1d25]">get</span></h1>
                         <p className="font-medium mt-5 text-lg">Captivate Your Audience By:</p>
@@ -255,14 +253,66 @@ function Landing() {
                         <h1 className="text-2xl font-medium leading-6"><span className="text-[#ef1d25]">Repurpose</span> Longform Content</h1>
                         <hr className="my-4 border-[1px] border-black" />
                         <p className="text-sm">Repurpose new or existing longform content i.e podcasts of YouTube Videos into clips for TikTok, Reels or YouTube Shorts. Each clip produced counts as 1 monthly edit credit.</p>
- 
+
                         <h1 className="text-2xl font-medium leading-6 mt-8">Grow Faster With A <span className="text-[#ef1d25]">CTA</span></h1>
                         <hr className="my-4 border-[1px] border-black" />
                         <p className="text-sm">Repurpose new or existing longform content i.e podcasts of YouTube Videos into clips for TikTok, Reels or YouTube Shorts. Each clip produced counts as 1 monthly edit credit.</p>
 
                         <button className="bg-[#ef1d25] text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 mt-7">Order Edit</button>
                     </div>
-                </div>
+                </section>
+
+                <section className="max-w-4xl mx-auto mt-12 flex gap-24">
+                    <div className="w-full max-w-[270px]">
+                        <img src="/images/treesocial.svg" alt="Social Tree" className="w-full" />
+                    </div>
+                    <div className="p-8">
+                        <h1 className="text-2xl font-medium text-[#ef1d25]">All Social Media Formats</h1>
+                        <p className="mt-4 leading-tight">Whichever platform you choose we deliver all social media formats: Square, vertical, horizontal (1*1, 4*5, 16*9, 9*16)</p>
+
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full max-w-lg mt-6">
+                            <div><img src="/images/fb.svg" alt="Instagram" className="w-[110px] h-[30px]" /></div>
+                            <div><img src="/images/ig.svg" alt="Instagram" className="w-[110px] h-[30px]" /></div>
+                            <div><img src="/images/yt.svg" alt="Instagram" className="w-[100px] h-[30px]" /></div>
+                            <div><img src="/images/tk.svg" alt="Instagram" className="w-[85px] h-[30px]" /></div>
+                            <div><img src="/images/yn.svg" alt="Instagram" className="w-[180px] h-[30px]" /></div>
+                        </div>
+                    </div>
+                </section>
+
+                <button className="block mx-auto bg-[#ef1d25] text-white text-[14px] font-medium uppercase tracking-widest py-2.5 px-4 mt-8">Schedule A Free Strategy Call Now</button>
+            </section>
+
+            <section className="w-full bg-black -mt-7 rounded-t-2xl text-white">
+                <section className="w-full overflow-hidden pt-8" ref={textTriggers[2]}>
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={texts[2]}>
+                        {
+                            [1, 2, 3, 4, 5].map((item, index) => (
+                                <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke-yellow"} key={index}>Portfolio</h1>
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <section className="py-12">
+                    <h1 className="text-center font-medium uppercase text-3xl max-w-2xl mx-auto">Some of Our Previous <span className="text-[#fcde02]">Selected Works</span> That We Did for Our Clients</h1>
+                    <p className="max-w-sm text-center mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                </section>
+
+                <section className="w-full overflow-hidden pt-8" ref={textTriggers[3]}>
+                    <div className="flex gap-8 justify-center pt-4 whitespace-nowrap" ref={texts[3]}>
+                        {
+                            [1, 2, 3, 4, 5].map((item, index) => (
+                                <h1 className={index % 2 == 1 ? "text-6xl font-bold uppercase" : "text-6xl font-bold uppercase text-stroke-yellow"} key={index}>Reviews</h1>
+                            ))
+                        }
+                    </div>
+                </section>
+
+                <section className="py-12">
+                    <h1 className="text-center font-medium uppercase text-3xl max-w-lg mx-auto">Some inspirational <span className="text-[#fcde02]">stories</span> of our <span className="text-[#fcde02]">previous clients</span></h1>
+                    <p className="max-w-lg text-center mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                </section>
             </section>
         </>
     )
