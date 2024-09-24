@@ -2,6 +2,8 @@ import Marquee from "react-fast-marquee";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 function Landing() {
   const textTriggers = [
@@ -662,14 +664,117 @@ function Landing() {
 
         <section className="py-12">
           <div>
-            <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto">
+            <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto mt-5">
               Some inspirational <span className="text-secondary">stories</span>{" "}
               of our <span className="text-secondary">previous clients</span>
             </h1>
-            <p className="max-w-lg text-center font-[300] mx-auto mt-6">
+            <p className="text-lg text-center font-[300] mt-6">
               Convince your visitors with dear user guidance and a strong
               concept.
             </p>
+          </div>
+
+          <div className="py-12">
+            <Splide
+              tag="section"
+              hasTrack={false}
+              options={{
+                type: "loop",
+                padding: "20rem",
+              }}
+            >
+              <SplideTrack>
+                {[
+                  {
+                    user: {
+                      picture: "rec-user1.png",
+                      name: "Aurora lilly",
+                      position: "Marketing Manager",
+                    },
+                    comment:
+                      "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+                    views: "35 Million+",
+                    followers: "150000+",
+                    cover: "rec1.png",
+                  },
+                  {
+                    user: {
+                      picture: "rec-user1.png",
+                      name: "Aurora lilly",
+                      position: "Marketing Manager",
+                    },
+                    comment:
+                      "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+                    views: "35 Million+",
+                    followers: "150000+",
+                    cover: "rec1.png",
+                  },
+                  {
+                    user: {
+                      picture: "rec-user1.png",
+                      name: "Aurora lilly",
+                      position: "Marketing Manager",
+                    },
+                    comment:
+                      "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+                    views: "35 Million+",
+                    followers: "150000+",
+                    cover: "rec1.png",
+                  },
+                ].map((r, i) => (
+                  <SplideSlide
+                    key={i}
+                    className="flex justify-center max-w-4xl"
+                  >
+                    <div className="max-w-2xl rounded-2xl pb-0.5 bg-[#413f3f]">
+                      <div className="flex gap-8 p-6 border border-white/50 rounded-2xl">
+                        <div className="flex flex-col justify-between">
+                          <div>
+                            <div className="flex gap-4">
+                              <div>
+                                <img
+                                  src={"/images/" + r.user.picture}
+                                  alt={r.user.name}
+                                  className="w-12 h-12"
+                                />
+                              </div>
+                              <div>
+                                <h2 className="font-semibold">{r.user.name}</h2>
+                                <p>{r.user.position}</p>
+                              </div>
+                            </div>
+
+                            <p className="py-8 font-medium text-lg">
+                              "{r.comment}"
+                            </p>
+                          </div>
+                          <div className="flex gap-8">
+                            <div>
+                              <h2 className="font-semibold">{r.views}</h2>
+                              <p>Views</p>
+                            </div>
+                            <div>
+                              <h2 className="font-semibold">{r.followers}</h2>
+                              <p>Followers Gained</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <img
+                            src={"/images/" + r.cover}
+                            alt="Cover"
+                            className="min-w-[200px]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </SplideSlide>
+                ))}
+              </SplideTrack>
+              <div className="splide__progress">
+                <div className="splide__progress__bar" />
+              </div>
+            </Splide>
           </div>
         </section>
 
@@ -723,25 +828,28 @@ function Landing() {
 
           <div className="flex gap-2 items-center w-fit mx-auto">
             <button
-              class="font-semibold"
+              className="font-semibold"
               onClick={() => setPricingCheck(false)}
             >
               Monthly
             </button>
-            <label class="inline-flex items-center cursor-pointer">
+            <label className="inline-flex items-center cursor-pointer">
               <input
                 type="checkbox"
                 value=""
                 checked={pricingCheck}
                 onChange={(e) => setPricingCheck(e.currentTarget.checked)}
-                class="sr-only peer"
+                className="sr-only peer"
               />
-              <div class="relative w-12 h-7 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+              <div className="relative w-12 h-7 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
             </label>
-            <button class="font-semibold" onClick={() => setPricingCheck(true)}>
+            <button
+              className="font-semibold"
+              onClick={() => setPricingCheck(true)}
+            >
               Yearly
             </button>
-            <div class="text-primary h-fit text-[10px] py-0.5 font-medium px-2 rounded-full border border-primary flex items-center">
+            <div className="text-primary h-fit text-[10px] py-0.5 font-medium px-2 rounded-full border border-primary flex items-center">
               <p>35% OFF</p>
             </div>
           </div>
@@ -771,17 +879,20 @@ function Landing() {
                     label: "Single Video Edits",
                   },
                 ].map((p, i) => (
-                  <div class="flex items-center my-2" key={i}>
+                  <div className="flex items-center my-2" key={i}>
                     <input
                       type="radio"
-                      class={
+                      className={
                         "w-4 h-4" + (pricingRadio == p.id && " font-semibold")
                       }
                       id={p.id}
                       checked={pricingRadio == p.id}
                       onChange={() => setPricingRadio(p.id)}
                     />
-                    <label for={p.id} class="ms-2 font-medium cursor-pointer">
+                    <label
+                      htmlFor={p.id}
+                      className="ms-2 font-medium cursor-pointer"
+                    >
                       {p.label}
                     </label>
                   </div>
