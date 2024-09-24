@@ -12,8 +12,8 @@ function Landing() {
             x: 200,
             scrollTrigger: {
                 trigger: trigger,
-                start: "top bottom",
-                end: "+=1000",
+                start: "top 75%",
+                end: "bottom top",
                 scrub: 0.5
             },
         });
@@ -22,6 +22,7 @@ function Landing() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         texts.forEach((text, index) => makeMove(text.current, textTriggers[index].current));
+        ScrollTrigger.refresh();
     }, []);
 
 
@@ -292,11 +293,68 @@ function Landing() {
                             ))
                         }
                     </div>
+
                 </section>
 
                 <section className="py-12">
                     <h1 className="text-center font-medium uppercase text-3xl max-w-2xl mx-auto">Some of Our Previous <span className="text-[#fcde02]">Selected Works</span> That We Did for Our Clients</h1>
-                    <p className="max-w-sm text-center mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                    <p className="max-w-sm text-center font-[300] mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                </section>
+
+                <section>
+                    <div className="grid grid-cols-6 gap-4 mt-5">
+                        {[{
+                            image: "pfl1.png",
+                            title: "YT Shorts"
+                        }, {
+                            image: "pfl2.png",
+                            title: "Tiktok"
+                        }, {
+                            image: "pfl3.png",
+                            title: "FB Reel"
+                        }, {
+                            image: "pfl2.png",
+                            title: "Tiktok"
+                        }, {
+                            image: "pfl3.png",
+                            title: "FB Reel"
+                        }, {
+                            image: "pfl1.png",
+                            title: "YT Shorts"
+                        }].map((item, index) => (
+                            <div key={index} className="flex flex-col items-center">
+                                <img src={`/images/${item.image}`} alt="Portfolio" className="w-auto" />
+                                <div className="w-full bg-white text-black p-4">
+                                    <div className="text-lg font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">{item.title}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="grid grid-cols-5 gap-4 mt-5">
+                        {[{
+                            image: "pfl4.png",
+                            title: "Youtube Video"
+                        }, {
+                            image: "pfl5.png",
+                            title: "FB Video"
+                        }, {
+                            image: "pfl6.png",
+                            title: "Any HD"
+                        }, {
+                            image: "pfl4.png",
+                            title: "Youtube Video"
+                        }, {
+                            image: "pfl5.png",
+                            title: "FB Video"
+                        }].map((item, index) => (
+                            <div key={index} className="flex flex-col items-center">
+                                <img src={`/images/${item.image}`} alt="Portfolio" className="w-auto" />
+                                <div className="w-full bg-white text-black p-4">
+                                    <div className="text-sm font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">{item.title}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </section>
 
                 <section className="w-full overflow-hidden pt-8" ref={textTriggers[3]}>
@@ -310,9 +368,18 @@ function Landing() {
                 </section>
 
                 <section className="py-12">
-                    <h1 className="text-center font-medium uppercase text-3xl max-w-lg mx-auto">Some inspirational <span className="text-[#fcde02]">stories</span> of our <span className="text-[#fcde02]">previous clients</span></h1>
-                    <p className="max-w-lg text-center mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                    <div>
+                        <h1 className="text-center font-medium uppercase text-3xl max-w-lg mx-auto">Some inspirational <span className="text-[#fcde02]">stories</span> of our <span className="text-[#fcde02]">previous clients</span></h1>
+                        <p className="max-w-lg text-center font-[300] mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                    </div></section>
+
+                <section className="py-12">
+                    <div>
+                        <h1 className="text-center font-medium uppercase text-3xl max-w-lg mx-auto">What Ours Customers Say About Our <span className="text-[#fcde02]">Services</span></h1>
+                        <p className="max-w-lg text-center font-[300] mx-auto mt-6">Convince your visitors with dear user guidance and a strong concept.</p>
+                    </div>
                 </section>
+
             </section>
         </>
     )
