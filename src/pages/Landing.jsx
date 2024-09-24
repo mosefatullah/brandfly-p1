@@ -12,8 +12,10 @@ function Landing() {
     useRef(null),
     useRef(null),
     useRef(null),
+    useRef(null),
   ];
   const texts = [
+    useRef(null),
     useRef(null),
     useRef(null),
     useRef(null),
@@ -778,7 +780,7 @@ function Landing() {
           </div>
         </section>
 
-        <section className="py-12">
+        <section className="pt-12">
           <div>
             <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto">
               What Ours Customers Say About Our{" "}
@@ -788,6 +790,64 @@ function Landing() {
               Convince your visitors with dear user guidance and a strong
               concept.
             </p>
+          </div>
+
+          <div className="max-w-7xl mx-auto mt-8">
+            <Splide>
+              {[
+                {
+                  picture: "rev1.png",
+                  title: (
+                    <p>
+                      a video agency that meet all{" "}
+                      <span className="text-secondary">our goals</span>
+                    </p>
+                  ),
+                  review:
+                    "They were incredibly responsive throughout the entire video production process and kept me informed every step of the way. The final product exceeded my expectations. I'll definitely be using them again!",
+                  name: "John Kim",
+                  position: (
+                    <p>
+                      Founder of{" "}
+                      <span className="text-secondary font-medium">
+                        TechSolve
+                      </span>
+                    </p>
+                  ),
+                },
+              ].map((rc, i) => (
+                <div className="w-full grid grid-cols-2 gap-4 items-center">
+                  <div>
+                    <img
+                      src={"/images/" + rc.picture}
+                      alt="Human"
+                      className="w-[300px] mx-auto"
+                    />
+                  </div>
+                  <div>
+                    <div className="max-w-lg mx-auto p-8">
+                      <h2 className="text-2xl uppercase font-semibold">
+                        {rc.title}
+                      </h2>
+                      <p className="my-7">"{rc.review}"</p>
+
+                      <img
+                        src="/images/5stars.svg"
+                        alt="5 Stars"
+                        className="w-auto h-[14px]"
+                      />
+
+                      <div className="mt-12">
+                        <p className="text-2xl font-medium uppercase">
+                          - {rc.name}
+                        </p>
+                        <div className="text-lg">{rc.position}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Splide>
           </div>
         </section>
       </section>
@@ -1016,7 +1076,7 @@ function Landing() {
           </button>
         </section>
 
-        <section className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto pt-12">
+        <section className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto pt-14">
           <div>
             <h1 className="uppercase text-4xl font-bold">
               Book a Call <span className="text-primary">Today</span>
@@ -1094,6 +1154,52 @@ function Landing() {
           </div>
         </section>
       </section>
+      <footer
+        className="w-full bg-black text-white py-14 overflow-hidden"
+        ref={textTriggers[5]}
+      >
+        <div>
+          <h1 className="text-4xl text-center max-w-lg mx-auto font-semibold uppercase">
+            Have a <span className="text-secondary">project</span> in mind? Let
+            us work <span className="text-secondary">together</span>
+          </h1>
+          <div className="flex justify-center gap-8 mt-7">
+            <button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4">
+              See The Plans
+            </button>
+            <button className="bg-primary text-white text-[16px] font-bold tracking-widest py-2 px-4">
+              Book a call
+            </button>
+          </div>
+
+          <div className="max-w-7xl mx-auto">
+            <hr className="border border-white my-12" />
+
+            <p className="font-medium text-center my-4">
+              &copy; {new Date().getFullYear() || "2024"} by Hypecut. All rights
+              reserved.
+            </p>
+          </div>
+
+          <div
+            className="flex gap-8 justify-center pt-8 whitespace-nowrap"
+            ref={texts[5]}
+          >
+            {[1, 2, 3, 4, 5].map((item, index) => (
+              <h1
+                className={
+                  index % 2 == 1
+                    ? "text-6xl font-bold uppercase"
+                    : "text-6xl font-bold uppercase text-stroke-yellow"
+                }
+                key={index}
+              >
+                Hypecut
+              </h1>
+            ))}
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
