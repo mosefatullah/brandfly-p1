@@ -40,6 +40,46 @@ function Landing() {
         });
     };
 
+    const makeInvrev = (boxes, sign = "-") => {
+        const boxWidth = boxes[0].offsetWidth;
+        const containerWidth = boxWidth * boxes.length;
+        const windowWidth = window.innerWidth;
+        const totalWidth = containerWidth - windowWidth;
+        const direction = sign === "+" ? 1 : -1;
+
+        gsap.set(boxes, { x: direction === 1 ? -totalWidth : 0 });
+
+        const speed = 10; // Constant speed in seconds for the full distance
+
+        const anim = gsap.to(boxes, {
+            x: direction * totalWidth,
+            ease: "none",
+            duration: speed,
+            yoyo: true,
+            repeat: -1,
+            onUpdate: () => {
+                const currentX = gsap.getProperty(boxes[0], 'x');
+                if (Math.abs(currentX) >= totalWidth || currentX >= 0) anim.reverse();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            anim.kill();
+            const newWindowWidth = window.innerWidth;
+            const newTotalWidth = boxWidth * boxes.length - newWindowWidth;
+            gsap.set(boxes, { x: direction === 1 ? -newTotalWidth : 0 });
+            gsap.to(boxes, {
+                x: direction * newTotalWidth,
+                ease: "none",
+                duration: speed,
+                yoyo: true,
+                repeat: -1,
+            });
+        });
+    };
+
+
+
     useEffect(() => {
         textTriggers.forEach((trigger, index) => {
             if (texts[index].current && trigger.current) {
@@ -47,7 +87,17 @@ function Landing() {
             }
         });
         ScrollTrigger.refresh();
+
+        gsap.set(".anim-invrev", {
+            x: (i) => i * 50
+        });
     }, []);
+
+    useEffect(() => {
+        makeInvrev(gsap.utils.toArray('.anim-invrev1'), "-");
+        makeInvrev(gsap.utils.toArray('.anim-invrev2'), "+");
+    }, []);
+
 
     return (
         <>
@@ -85,16 +135,16 @@ function Landing() {
                         <img
                             src="/images/logo.png"
                             alt="Hypecut Logo"
-                            className="w-auto h-[37px]"
+                            className="w-auto h-[20px] md:h-[37px]"
                         />
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="items-center gap-8 text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex">
+                        <ul className="items-center gap-8 text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
                             {["Home", "Pricing", "About Us"].map((item, index) => (
                                 <li
                                     key={index}
-                                    className={index == 0 && "text-white bg-primary"}
+                                    className={index == 0 ? " text-white bg-primary" : "hover:bg-primary/30 transition-all"}
                                 >
                                     <p className="py-1.5 px-5">{item}</p>
                                 </li>
@@ -103,7 +153,7 @@ function Landing() {
                     </div>
 
                     <div id="navbar-action">
-                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 border-[2.5px] border-black">
+                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2.5px] border-black hover:bg-primary/70 transition-all">
                             Book a Demo
                         </button>
                     </div>
@@ -112,18 +162,18 @@ function Landing() {
             <section id="hero" className="min-h-[90vh] pt-8 pb-20">
                 <div className="px-8 w-full xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
                     <div>
-                        <h1 className="text-[42px] leading-tight font-bold uppercase">
+                        <h1 className="text-2xl md:text-[42px] leading-tight font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
                         </h1>
-                        <p className="py-4 text-[24px] font-medium">
+                        <p className="py-4 text-sm md:text-[24px] font-medium">
                             Quick Turnaround And Exceptional Quality Guaranteed
                         </p>
 
-                        <div className="flex gap-4 mt-5">
-                            <button className="bg-primary text-white text-[18px] font-bold uppercase tracking-widest py-2 px-6">
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-5">
+                            <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all">
                                 See the Pricing
                             </button>
-                            <button className="bg-transparent border-[2.5px] border-black text-[18px] font-bold uppercase tracking-widest py-2 px-6">
+                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary/30 transition-all">
                                 Watch How It Works
                             </button>
                         </div>
@@ -138,7 +188,7 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="flex gap-4 overflow-hidden whitespace-nowrap pt-14 pb-8">
+                <section className="flex gap-4 overflow-x-auto whitespace-nowrap pt-14 pb-8 md:justify-center px-4 md:px-0">
                     {[
                         "company1.png",
                         "company2.png",
@@ -180,7 +230,7 @@ function Landing() {
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15"
+                            className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all"
                         >
                             <p className="text-5xl font-bold">{item.count}</p>
                             <p className="text-2xl text-secondary font-medium uppercase mt-6">
@@ -280,7 +330,7 @@ function Landing() {
                     <span className="text-primary">5 Easy Steps</span>
                 </h1>
 
-                <section className="max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 justify-center">
+                <section className="max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 lg:gap-y-8 justify-center">
                     {[
                         {
                             icon: "step1.svg",
@@ -419,7 +469,7 @@ function Landing() {
                                     <img
                                         src={`/images/${item.icon}`}
                                         alt="Icon"
-                                        className="w-auto w-[20px] h-[20px]"
+                                        className="w-[20px] h-[20px]"
                                     />
                                     <p className="text-sm">{item.title}</p>
                                 </div>
@@ -460,7 +510,7 @@ function Landing() {
                     </div>
                 </section>
 
-                <section className="max-w-4xl mx-auto mt-12 flex gap-24">
+                <section className="max-w-4xl mx-auto mt-12 flex flex-col md:flex-row items-center md:items-none gap-5 md:gap-24">
                     <div className="w-full max-w-[270px]">
                         <img
                             src="/images/treesocial.svg"
@@ -477,47 +527,47 @@ function Landing() {
                             Square, vertical, horizontal (1*1, 4*5, 16*9, 9*16)
                         </p>
 
-                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 w-full max-w-lg mt-6">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 w-full max-w-lg mt-6">
                             <div>
                                 <img
                                     src="/images/fb.svg"
                                     alt="Instagram"
-                                    className="w-[110px] h-[30px]"
+                                    className="md:w-[110px] h-[30px]"
                                 />
                             </div>
                             <div>
                                 <img
                                     src="/images/ig.svg"
                                     alt="Instagram"
-                                    className="w-[110px] h-[30px]"
+                                    className="md:w-[110px] h-[30px]"
                                 />
                             </div>
                             <div>
                                 <img
                                     src="/images/yt.svg"
                                     alt="Instagram"
-                                    className="w-[100px] h-[30px]"
+                                    className="md:w-[100px] h-[30px]"
                                 />
                             </div>
                             <div>
                                 <img
                                     src="/images/tk.svg"
                                     alt="Instagram"
-                                    className="w-[85px] h-[30px]"
+                                    className="md:w-[85px] h-[30px]"
                                 />
                             </div>
                             <div>
                                 <img
                                     src="/images/yn.svg"
                                     alt="Instagram"
-                                    className="w-[180px] h-[30px]"
+                                    className="md:w-[180px] h-[30px]"
                                 />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2.5 px-7 mt-8">
+                <button className="block mx-auto bg-primary text-white md:text-lg font-semibold py-1.5 px-3 md:py-2.5 md:px-7 mt-8">
                     Schedule A Free Strategy Call Now
                 </button>
             </section>
@@ -554,8 +604,8 @@ function Landing() {
                     </p>
                 </section>
 
-                <section>
-                    <div className="grid grid-cols-6 gap-4 mt-5">
+                <section className="overflow-x-hidden">
+                    <div className="flex grid-cols-3 lg:grid-cols-6 justify-center gap-4 mt-5">
                         {[
                             {
                                 image: "pfl1.png",
@@ -581,15 +631,27 @@ function Landing() {
                                 image: "pfl1.png",
                                 title: "YT Shorts",
                             },
+                            {
+                                image: "pfl2.png",
+                                title: "Tiktok",
+                            },
+                            {
+                                image: "pfl3.png",
+                                title: "FB Reel",
+                            },
+                            {
+                                image: "pfl1.png",
+                                title: "YT Shorts",
+                            },
                         ].map((item, index) => (
-                            <div key={index} className="flex flex-col items-center relative">
+                            <div key={index} className="anim-invrev1 flex flex-col items-center relative min-w-[150px] md:min-w-[220px]">
                                 <img
                                     src={`/images/${item.image}`}
                                     alt="Portfolio"
                                     className="w-auto"
                                 />
-                                <div className="w-full bg-white text-black p-4">
-                                    <div className="text-lg font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
+                                <div className="w-full bg-white text-black p-2 md:p-4">
+                                    <div className=" text-smmd:text-lg font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
                                         {item.title}
                                     </div>
                                 </div>
@@ -602,7 +664,7 @@ function Landing() {
                             </div>
                         ))}
                     </div>
-                    <div className="grid grid-cols-5 gap-4 mt-5">
+                    <div className="flex grid-cols-5 gap-4 mt-5">
                         {[
                             {
                                 image: "pfl4.png",
@@ -624,15 +686,27 @@ function Landing() {
                                 image: "pfl5.png",
                                 title: "FB Video",
                             },
+                            {
+                                image: "pfl6.png",
+                                title: "Any HD",
+                            },
+                            {
+                                image: "pfl4.png",
+                                title: "Youtube Video",
+                            },
+                            {
+                                image: "pfl5.png",
+                                title: "FB Video",
+                            },
                         ].map((item, index) => (
-                            <div key={index} className="flex flex-col items-center relative">
+                            <div key={index} className="anim-invrev2 flex flex-col items-center relative min-w-[200px] md:min-w-[300px]">
                                 <img
                                     src={`/images/${item.image}`}
                                     alt="Portfolio"
-                                    className="w-auto"
+                                    className="w-auto aspect-video"
                                 />
-                                <div className="w-full bg-white text-black p-4">
-                                    <div className="text-sm font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
+                                <div className="w-full bg-white text-black p-2 md:p-4 whitespace-nowrap">
+                                    <div className="text-xs md:text-sm font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
                                         {item.title}
                                     </div>
                                 </div>
@@ -679,7 +753,7 @@ function Landing() {
                         </p>
                     </div>
 
-                    <div className="py-12">
+                    <div className="py-12 overflow-hidden">
                         <Splide
                             tag="section"
                             hasTrack={false}
@@ -819,7 +893,7 @@ function Landing() {
                                     ),
                                 },
                             ].map((rc, i) => (
-                                <div className="w-full grid grid-cols-2 gap-4 items-center" key={i}>
+                                <div className="w-full grid md:grid-cols-2 gap-4 items-center" key={i}>
                                     <div>
                                         <img
                                             src={"/images/" + rc.picture}
@@ -877,192 +951,195 @@ function Landing() {
                         </div>
                     </div>
 
-                    <div className="pb-8 pt-12">
-                        <h1 className="text-center font-semibold uppercase text-3xl max-w-sm mx-auto">
-                            create your <span className="text-primary">video</span> pick a
-                            plan <span className="text-primary">later</span>
-                        </h1>
-                        <p className="max-w-xl text-center font-[300] mx-auto mt-6">
-                            Choose the plan that’s right for your business. Whether you’re
-                            just getting started with your first ever video or well down the
-                            path to pro contents, we’re got you covered
-                        </p>
-                    </div>
-
-                    <div className="flex gap-2 items-center w-fit mx-auto">
-                        <button
-                            className="font-semibold"
-                            onClick={() => setPricingCheck(false)}
-                        >
-                            Monthly
-                        </button>
-                        <label className="inline-flex items-center cursor-pointer">
-                            <input
-                                type="checkbox"
-                                value=""
-                                checked={pricingCheck}
-                                onChange={(e) => setPricingCheck(e.currentTarget.checked)}
-                                className="sr-only peer"
-                            />
-                            <div className="relative w-12 h-7 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
-                        </label>
-                        <button
-                            className="font-semibold"
-                            onClick={() => setPricingCheck(true)}
-                        >
-                            Yearly
-                        </button>
-                        <div className="text-primary h-fit text-[10px] py-0.5 font-medium px-2 rounded-full border border-primary flex items-center">
-                            <p>35% OFF</p>
-                        </div>
-                    </div>
-
-                    <div className="max-w-6xl mx-auto grid gap-4 py-8 lg:grid-cols-4">
-                        <div>
-                            <h1 className="font-semibold uppercase text-3xl max-w-sm">
-                                Pick Your <span className="text-primary">Plan</span>
+                    <div className="px-4 md:px-0">
+                        <div className="pb-8 pt-12">
+                            <h1 className="text-center font-semibold uppercase text-3xl max-w-sm mx-auto">
+                                create your <span className="text-primary">video</span> pick a
+                                plan <span className="text-primary">later</span>
                             </h1>
-
-                            <div className="my-8">
-                                {[
-                                    {
-                                        id: "plan-radio-1",
-                                        label: "Monthly Video Editing Service",
-                                    },
-                                    {
-                                        id: "plan-radio-2",
-                                        label: "Unlimited Long-Form Video",
-                                    },
-                                    {
-                                        id: "plan-radio-3",
-                                        label: "Unlimited Reels/Tiktok/Shorts",
-                                    },
-                                    {
-                                        id: "plan-radio-4",
-                                        label: "Single Video Edits",
-                                    },
-                                ].map((p, i) => (
-                                    <div className="flex items-center my-2" key={i}>
-                                        <input
-                                            type="radio"
-                                            className={
-                                                "w-4 h-4" + (pricingRadio == p.id && " font-semibold")
-                                            }
-                                            id={p.id}
-                                            checked={pricingRadio == p.id}
-                                            onChange={() => setPricingRadio(p.id)}
-                                        />
-                                        <label
-                                            htmlFor={p.id}
-                                            className="ms-2 font-medium cursor-pointer"
-                                        >
-                                            {p.label}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <p>
-                                Choose the Pricing Plan that{" "}
-                                <span className="font-semibold">works best</span> for your
-                                business.
+                            <p className="max-w-xl text-center font-[300] mx-auto mt-6">
+                                Choose the plan that’s right for your business. Whether you’re
+                                just getting started with your first ever video or well down the
+                                path to pro contents, we’re got you covered
                             </p>
                         </div>
 
-                        {[
-                            {
-                                title: "Starter",
-                                subtle:
-                                    "Display stars in Google organic search result and showcase.",
-                                features: [
-                                    "4 YouTube videos (HD/4K)",
-                                    "5 reels/shorts for any platform",
-                                    "Animated subtitles",
-                                    "Thumbnails for YouTube videos and reels/shorts",
-                                    "Video running time: 10 minutes",
-                                    "24/7 assistance via WhatsApp",
-                                ],
-                                cost: 1200,
-                                discount: 1080,
-                            },
-                            {
-                                title: "Creator",
-                                subtle:
-                                    "Display stars in Google organic search result and showcase.",
-                                features: [
-                                    "8 YouTube videos (HD/4K)",
-                                    "10 reels/shorts for any platform",
-                                    "Animated subtitles",
-                                    "Thumbnails for YouTube videos and reels/shorts",
-                                    "Video running time: 15 minutes",
-                                    "24/7 assistance via WhatsApp",
-                                    "Trending keywords suggestion",
-                                    "Live updates via dedicated CRM",
-                                ],
-                                cost: 2200,
-                                discount: 1870,
-                            },
-                            {
-                                title: "Studio",
-                                subtle:
-                                    "Display stars in Google organic search result and showcase.",
-                                features: [
-                                    "16 YouTube videos (HD/4K)",
-                                    "20 reels/shorts for any platform",
-                                    "Animated subtitles",
-                                    "Thumbnails for YouTube videos and reels/shorts",
-                                    "Video running time: 20 minutes",
-                                    "24/7 assistance via WhatsApp",
-                                    "Trending keyword suggestion",
-                                    "Live updates via dedicated CRM",
-                                    "Hook generation",
-                                ],
-                                cost: 3500,
-                                discount: 2625,
-                                term: "* Contact us for personalized pricing and services",
-                            },
-                        ].map((p, i) => (
-                            <div
-                                key={i}
-                                className="border-[2px] border-black p-4 flex flex-col justify-between bg-white"
+                        <div className="flex gap-2 items-center w-fit mx-auto">
+                            <button
+                                className="font-semibold"
+                                onClick={() => setPricingCheck(false)}
                             >
-                                <div>
-                                    <h1 className="font-semibold uppercase text-3xl text-primary">
-                                        {p.title}
-                                    </h1>
-
-                                    <p className="mt-4 font-semibold">{p.subtle}</p>
-
-                                    <ul className="ms-4 mt-6 list-disc">
-                                        {p.features.map((f, ii) => (
-                                            <li key={ii} className="my-2">
-                                                {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-
-                                <div className="mt-12 text-center">
-                                    <p className="text-2xl">
-                                        <del>${p.cost}</del>
-                                    </p>
-                                    <div className="flex gap-0.5 justify-center items-end">
-                                        <p className="text-3xl font-bold text-primary">
-                                            ${p.discount}
-                                        </p>
-                                        <p className="font-semibold text-lg">/mo</p>
-                                    </div>
-                                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8">
-                                        Select Plan
-                                    </button>
-                                    <div className="h-[80px] pt-5 font-semibold">
-                                        {p.term || ""}
-                                    </div>
-                                </div>
+                                Monthly
+                            </button>
+                            <label className="inline-flex items-center cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    value=""
+                                    checked={pricingCheck}
+                                    onChange={(e) => setPricingCheck(e.currentTarget.checked)}
+                                    className="sr-only peer"
+                                />
+                                <div className="relative w-12 h-7 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                            </label>
+                            <button
+                                className="font-semibold"
+                                onClick={() => setPricingCheck(true)}
+                            >
+                                Yearly
+                            </button>
+                            <div className="text-primary h-fit text-[10px] py-0.5 font-medium px-2 rounded-full border border-primary flex items-center">
+                                <p>35% OFF</p>
                             </div>
-                        ))}
+                        </div>
+
+                        <div className="max-w-6xl mx-auto grid gap-4 py-8 lg:grid-cols-4">
+                            <div>
+                                <h1 className="font-semibold uppercase text-3xl max-w-sm">
+                                    Pick Your <span className="text-primary">Plan</span>
+                                </h1>
+
+                                <div className="my-8">
+                                    {[
+                                        {
+                                            id: "plan-radio-1",
+                                            label: "Monthly Video Editing Service",
+                                        },
+                                        {
+                                            id: "plan-radio-2",
+                                            label: "Unlimited Long-Form Video",
+                                        },
+                                        {
+                                            id: "plan-radio-3",
+                                            label: "Unlimited Reels/Tiktok/Shorts",
+                                        },
+                                        {
+                                            id: "plan-radio-4",
+                                            label: "Single Video Edits",
+                                        },
+                                    ].map((p, i) => (
+                                        <div className="flex items-center my-2" key={i}>
+                                            <input
+                                                type="radio"
+                                                className={
+                                                    "w-4 h-4" + (pricingRadio == p.id && " font-semibold")
+                                                }
+                                                id={p.id}
+                                                checked={pricingRadio == p.id}
+                                                onChange={() => setPricingRadio(p.id)}
+                                            />
+                                            <label
+                                                htmlFor={p.id}
+                                                className="ms-2 font-medium cursor-pointer"
+                                            >
+                                                {p.label}
+                                            </label>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <p>
+                                    Choose the Pricing Plan that{" "}
+                                    <span className="font-semibold">works best</span> for your
+                                    business.
+                                </p>
+                            </div>
+
+                            {[
+                                {
+                                    title: "Starter",
+                                    subtle:
+                                        "Display stars in Google organic search result and showcase.",
+                                    features: [
+                                        "4 YouTube videos (HD/4K)",
+                                        "5 reels/shorts for any platform",
+                                        "Animated subtitles",
+                                        "Thumbnails for YouTube videos and reels/shorts",
+                                        "Video running time: 10 minutes",
+                                        "24/7 assistance via WhatsApp",
+                                    ],
+                                    cost: 1200,
+                                    discount: 1080,
+                                },
+                                {
+                                    title: "Creator",
+                                    subtle:
+                                        "Display stars in Google organic search result and showcase.",
+                                    features: [
+                                        "8 YouTube videos (HD/4K)",
+                                        "10 reels/shorts for any platform",
+                                        "Animated subtitles",
+                                        "Thumbnails for YouTube videos and reels/shorts",
+                                        "Video running time: 15 minutes",
+                                        "24/7 assistance via WhatsApp",
+                                        "Trending keywords suggestion",
+                                        "Live updates via dedicated CRM",
+                                    ],
+                                    cost: 2200,
+                                    discount: 1870,
+                                },
+                                {
+                                    title: "Studio",
+                                    subtle:
+                                        "Display stars in Google organic search result and showcase.",
+                                    features: [
+                                        "16 YouTube videos (HD/4K)",
+                                        "20 reels/shorts for any platform",
+                                        "Animated subtitles",
+                                        "Thumbnails for YouTube videos and reels/shorts",
+                                        "Video running time: 20 minutes",
+                                        "24/7 assistance via WhatsApp",
+                                        "Trending keyword suggestion",
+                                        "Live updates via dedicated CRM",
+                                        "Hook generation",
+                                    ],
+                                    cost: 3500,
+                                    discount: 2625,
+                                    term: "* Contact us for personalized pricing and services",
+                                },
+                            ].map((p, i) => (
+                                <div
+                                    key={i}
+                                    className="border-[2px] border-black p-4 flex flex-col justify-between bg-white"
+                                >
+                                    <div>
+                                        <h1 className="font-semibold uppercase text-3xl text-primary">
+                                            {p.title}
+                                        </h1>
+
+                                        <p className="mt-4 font-semibold">{p.subtle}</p>
+
+                                        <ul className="ms-4 mt-6 list-disc">
+                                            {p.features.map((f, ii) => (
+                                                <li key={ii} className="my-2">
+                                                    {f}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="mt-12 text-center">
+                                        <p className="text-2xl">
+                                            <del>${p.cost}</del>
+                                        </p>
+                                        <div className="flex gap-0.5 justify-center items-end">
+                                            <p className="text-3xl font-bold text-primary">
+                                                ${p.discount}
+                                            </p>
+                                            <p className="font-semibold text-lg">/mo</p>
+                                        </div>
+                                        <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8">
+                                            Select Plan
+                                        </button>
+                                        <div className="h-[80px] pt-5 font-semibold">
+                                            {p.term || ""}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </section>
+
                 <section className="bg-black bg-[url('/images/underpricing.png')] text-white bg-cover w-full pb-12 relative -z-10 rounded-t-3xl -mt-[280px] pt-[300px] px-4 text-center">
                     <h1 className="uppercase text-4xl font-bold max-w-sm mx-auto">
                         Can't find any{" "}
@@ -1079,87 +1156,89 @@ function Landing() {
                     </button>
                 </section>
 
-                <section className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto pt-14">
-                    <div>
-                        <h1 className="uppercase text-4xl font-bold">
-                            Book a Call <span className="text-primary">Today</span>
-                        </h1>
+                <div className="px-4 md:px-0">
+                    <section className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto pt-14">
+                        <div>
+                            <h1 className="uppercase text-4xl font-bold">
+                                Book a Call <span className="text-primary">Today</span>
+                            </h1>
 
-                        <p className="my-5 mt-6">
-                            Have any query in mind? Just book a call today and we will discuss
-                            them together.
-                        </p>
-                        <p className="my-5">
-                            Save upto 70% from your first month Subscription
-                        </p>
-                        <p className="my-5">
-                            Everyone you will hire is well trained to deliver files as you
-                            want
-                        </p>
-                    </div>
-                    <div>
-                        <form action="" className="flex flex-col gap-3">
-                            <div className="grid grid-cols-2 gap-3">
-                                <input
-                                    type="text"
-                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
-                                    placeholder="Name"
-                                />
+                            <p className="my-5 mt-6">
+                                Have any query in mind? Just book a call today and we will discuss
+                                them together.
+                            </p>
+                            <p className="my-5">
+                                Save upto 70% from your first month Subscription
+                            </p>
+                            <p className="my-5">
+                                Everyone you will hire is well trained to deliver files as you
+                                want
+                            </p>
+                        </div>
+                        <div>
+                            <form action="" className="flex flex-col gap-3">
+                                <div className="grid grid-cols-2 gap-3">
+                                    <input
+                                        type="text"
+                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                        placeholder="Name"
+                                    />
+                                    <input
+                                        type="tel"
+                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                        placeholder="Phone Number"
+                                    />
+                                </div>
                                 <input
                                     type="tel"
                                     className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
-                                    placeholder="Phone Number"
+                                    placeholder="Email"
                                 />
-                            </div>
-                            <input
-                                type="tel"
-                                className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
-                                placeholder="Email"
-                            />
-                            <h2 className="font-semibold">I Want Video Editing for</h2>
-                            <div className="grid grid-cols-3 gap-3">
-                                {["Youtube", "Instagram", "Other"].map((s, i) => (
-                                    <label
-                                        htmlFor={`form-${s.toLowerCase()}`}
-                                        key={i}
-                                        className={
-                                            "px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80 flex gap-2 items-center" +
-                                            (formRadio == `form-${s.toLowerCase()}` &&
-                                                " bg-primary !border-primary text-white")
-                                        }
-                                    >
-                                        <input
-                                            type="radio"
-                                            id={`form-${s.toLowerCase()}`}
-                                            checked={formRadio == `form-${s.toLowerCase()}`}
-                                            onChange={() => setFormRadio(`form-${s.toLowerCase()}`)}
-                                        />
-                                        <p>{s}</p>
-                                    </label>
-                                ))}
-                            </div>
-                            <select
-                                type="tel"
-                                className="px-4 py-2.5 bg-white border-2 border-black/50"
-                            >
-                                <option value="">Select Your Budget</option>
-                            </select>
-                            <h2 className="font-semibold">Describe Your Project</h2>
-                            <textarea
-                                rows={5}
-                                className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
-                                placeholder="Your Text"
-                            ></textarea>
+                                <h2 className="font-semibold">I Want Video Editing for</h2>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    {["Youtube", "Instagram", "Other"].map((s, i) => (
+                                        <label
+                                            htmlFor={`form-${s.toLowerCase()}`}
+                                            key={i}
+                                            className={
+                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80 flex gap-2 items-center" +
+                                                (formRadio == `form-${s.toLowerCase()}` &&
+                                                    " bg-primary !border-primary text-white")
+                                            }
+                                        >
+                                            <input
+                                                type="radio"
+                                                id={`form-${s.toLowerCase()}`}
+                                                checked={formRadio == `form-${s.toLowerCase()}`}
+                                                onChange={() => setFormRadio(`form-${s.toLowerCase()}`)}
+                                            />
+                                            <p>{s}</p>
+                                        </label>
+                                    ))}
+                                </div>
+                                <select
+                                    type="tel"
+                                    className="px-4 py-2.5 bg-white border-2 border-black/50"
+                                >
+                                    <option value="">Select Your Budget</option>
+                                </select>
+                                <h2 className="font-semibold">Describe Your Project</h2>
+                                <textarea
+                                    rows={5}
+                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                    placeholder="Your Text"
+                                ></textarea>
 
-                            <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-6 mt-4">
-                                Schedule A Call
-                            </button>
-                        </form>
-                    </div>
-                </section>
+                                <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-6 mt-4">
+                                    Schedule A Call
+                                </button>
+                            </form>
+                        </div>
+                    </section>
+                </div>
             </section>
             <footer
-                className="w-full bg-black text-white py-14 overflow-hidden"
+                className="w-full bg-black text-white py-14 overflow-hidden px-4 md:px-0"
                 ref={textTriggers[5]}
             >
                 <div>
@@ -1178,6 +1257,59 @@ function Landing() {
 
                     <div className="max-w-7xl mx-auto">
                         <hr className="border border-white my-12" />
+
+                        <div className="w-full flex flex-col md:flex-row md:justify-between">
+                            <div className="flex gap-4 lg:gap-6">
+                                {[{
+                                    icon: "li.svg",
+                                    link: "#",
+                                }, {
+                                    icon: "tw.svg",
+                                    link: "#",
+                                }, {
+                                    icon: "ins.svg",
+                                    link: "#",
+                                }, {
+                                    icon: "fab.svg",
+                                    link: "#",
+                                }, {
+                                    icon: "yot.svg",
+                                    link: "#",
+                                }]
+                                    .map((item, index) => (
+                                        <a
+                                            key={index}
+                                            href={item.link}
+                                        >
+                                            <img
+                                                src={`/images/${item.icon}`}
+                                                alt="Icon"
+                                                className="w-auto h-[20px] mb-4"
+                                            />
+                                        </a>
+                                    ))}
+                            </div>
+                            <div className="w-fit flex gap-4 lg:gap-8 whitespace-nowrap">
+                                {[{
+                                    link: "#",
+                                    title: "General Info",
+                                }, {
+                                    link: "#",
+                                    title: "Privacy Policy",
+                                }, {
+                                    link: "#",
+                                    title: "Terms of Use",
+                                }]
+                                    .map((item, index) => (
+                                        <a
+                                            key={index}
+                                            href={item.link}
+                                        >
+                                            {item.title}
+                                        </a>
+                                    ))}
+                            </div>
+                        </div>
 
                         <p className="font-medium text-center my-4">
                             &copy; {new Date().getFullYear() || "2024"} by Hypecut. All rights
