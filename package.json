@@ -13,9 +13,9 @@
     "@splidejs/react-splide": "^0.7.12",
     "gsap": "^3.12.5",
     "react": "^18.2.0",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
-    "react-fast-marquee": "^1.6.5",
-    "react-slot-counter": "^3.0.1"
+    "react-fast-marquee": "^1.6.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

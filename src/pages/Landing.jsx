@@ -3,8 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import Counter from './../components/SlotCounter';
 import "@splidejs/react-splide/css";
-import SlotCounter from 'react-slot-counter';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -269,7 +269,7 @@ function Landing() {
                             key={index}
                             className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all fade-up"
                         >
-                            <p className="text-5xl font-bold"><SlotCounter value={item.count} />{item.sign}</p>
+                            <p className="text-5xl font-bold"><Counter value={item.count} />{item.sign}</p>
                             <p className="text-2xl text-secondary font-medium uppercase mt-6">
                                 {item.title}
                             </p>
