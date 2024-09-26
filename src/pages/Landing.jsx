@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import SlotCounter from 'react-slot-counter';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,43 +42,53 @@ function Landing() {
     };
 
     const makeInvrev = (boxes, sign = "-") => {
+        if (boxes.length === 0) return;
+
         const boxWidth = boxes[0].offsetWidth;
         const containerWidth = boxWidth * boxes.length;
         const windowWidth = window.innerWidth;
-        const totalWidth = containerWidth - windowWidth;
+        const totalDistance = containerWidth - windowWidth;
         const direction = sign === "+" ? 1 : -1;
 
-        gsap.set(boxes, { x: direction === 1 ? -totalWidth : 0 });
+        gsap.set(boxes, { x: direction === 1 ? -totalDistance : 0 });
 
-        const speed = 10; // Constant speed in seconds for the full distance
+        const speed = totalDistance / 20;
 
         const anim = gsap.to(boxes, {
-            x: direction * totalWidth,
+            x: direction * totalDistance,
             ease: "none",
             duration: speed,
-            yoyo: true,
             repeat: -1,
             onUpdate: () => {
                 const currentX = gsap.getProperty(boxes[0], 'x');
-                if (Math.abs(currentX) >= totalWidth || currentX >= 0) anim.reverse();
+                if (direction === 1 && currentX >= 0) {
+                    gsap.set(boxes, { x: -totalDistance });
+                } else if (direction === -1 && currentX <= -totalDistance) {
+                    gsap.set(boxes, { x: 0 });
+                }
             }
         });
 
-        window.addEventListener('resize', () => {
+        const handleResize = () => {
             anim.kill();
             const newWindowWidth = window.innerWidth;
-            const newTotalWidth = boxWidth * boxes.length - newWindowWidth;
-            gsap.set(boxes, { x: direction === 1 ? -newTotalWidth : 0 });
+            const newTotalDistance = containerWidth - newWindowWidth;
+            gsap.set(boxes, { x: direction === 1 ? -newTotalDistance : 0 });
             gsap.to(boxes, {
-                x: direction * newTotalWidth,
+                x: direction * newTotalDistance,
                 ease: "none",
-                duration: speed,
-                yoyo: true,
+                duration: newTotalDistance / 10,
                 repeat: -1,
             });
-        });
-    };
+        };
 
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            anim.kill();
+        };
+    };
 
 
     useEffect(() => {
@@ -86,14 +97,31 @@ function Landing() {
                 makeMove(texts[index].current, trigger.current);
             }
         });
-        ScrollTrigger.refresh();
 
-        gsap.set(".anim-invrev", {
-            x: (i) => i * 50
+
+        const fadeUpElements = gsap.utils.toArray(".fade-up");
+        fadeUpElements.forEach(element => {
+            gsap.set(element, { y: 100, opacity: 0 });
         });
+        fadeUpElements.forEach((element) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top bottom",
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                ease: "power1.out"
+            });
+        });
+
+        ScrollTrigger.refresh();
     }, []);
 
     useEffect(() => {
+        makeInvrev(gsap.utils.toArray('.anim-invrev0'), "-");
         makeInvrev(gsap.utils.toArray('.anim-invrev1'), "-");
         makeInvrev(gsap.utils.toArray('.anim-invrev2'), "+");
     }, []);
@@ -188,7 +216,7 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="flex gap-4 overflow-x-auto whitespace-nowrap pt-14 pb-8 md:justify-center px-4 md:px-0">
+                <section className="flex gap-4 overflow-hidden whitespace-nowrap pt-14 pb-8 md:justify-center px-4 md:px-0">
                     {[
                         "company1.png",
                         "company2.png",
@@ -197,12 +225,18 @@ function Landing() {
                         "company5.png",
                         "company6.png",
                         "company7.png",
+                        "company7.png",
+                        "company7.png",
+                        "company7.png",
+                        "company7.png",
+                        "company7.png",
+                        "company7.png",
                     ].map((item, index) => (
                         <img
                             key={index}
                             src={`/images/${item}`}
                             alt="Company Logo"
-                            className="w-auto h-[50px] mx-4"
+                            className="anim-invrev0 w-auto h-[50px] mx-4"
                         />
                     ))}
                 </section>
@@ -210,19 +244,22 @@ function Landing() {
                 <section className="w-full xl:max-w-7xl mx-auto p-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {[
                         {
-                            count: "45+",
+                            count: "45",
+                            sign: "+",
                             title: "Clients",
                             description:
                                 "We served our clients well enough to get these number of clients.",
                         },
                         {
-                            count: "160+",
+                            count: "160",
+                            sign: "+",
                             title: "Projects",
                             description:
                                 "We served our clients well enough to get these number of clients.",
                         },
                         {
-                            count: "100%",
+                            count: "100",
+                            sign: "%",
                             title: "Commitment",
                             description:
                                 "We served our clients well enough to get these number of clients.",
@@ -230,9 +267,9 @@ function Landing() {
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all"
+                            className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all fade-up"
                         >
-                            <p className="text-5xl font-bold">{item.count}</p>
+                            <p className="text-5xl font-bold"><SlotCounter value={item.count} />{item.sign}</p>
                             <p className="text-2xl text-secondary font-medium uppercase mt-6">
                                 {item.title}
                             </p>
