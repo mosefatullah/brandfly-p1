@@ -407,7 +407,7 @@ function Landing() {
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="flex flex-col gap-4 items-center w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1rem)]"
+                            className="flex flex-col gap-4 items-center w-full sm:w-[calc(50%-1rem)] md:w-[calc(33.33%-1rem)] transition-all hover:scale-95"
                         >
                             <img
                                 src={`/images/${item.icon}`}
