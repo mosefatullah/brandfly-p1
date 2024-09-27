@@ -261,13 +261,14 @@ function Landing() {
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="flex flex-col gap-4 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all fade-up"
+                            className="transition-all fade-up"
                         >
-                            <p className="text-5xl font-bold"><Counter value={item.count} />{item.sign}</p>
-                            <p className="text-2xl text-secondary font-medium uppercase mt-6">
+                            <div className="flex flex-col gap-4 hover:scale-105 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all group">
+                            <p className="text-5xl font-bold transition-all group-hover:scale-95"><Counter value={item.count} />{item.sign}</p>
+                            <p className="text-2xl text-secondary font-medium uppercase mt-6 transition-all group-hover:scale-95">
                                 {item.title}
                             </p>
-                            <p className="text-lg font-[300]">{item.description}</p>
+                            <p className="text-lg font-[300] transition-all group-hover:scale-95">{item.description}</p></div>
                         </div>
                     ))}
                 </section>
