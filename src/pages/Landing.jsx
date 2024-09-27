@@ -342,8 +342,8 @@ function Landing() {
                             <h1
                                 className={
                                     index % 2 == 0
-                                        ? "text-6xl font-bold uppercase"
-                                        : "text-6xl font-bold uppercase text-stroke-red"
+                                        ? "text-4xl md:text-6xl font-bold uppercase"
+                                        : "text-4xl md:text-6xl font-bold uppercase text-stroke-red"
                                 }
                             >
                                 Process
@@ -351,12 +351,12 @@ function Landing() {
                     ))}</Marquee>
                 </div>
 
-                <h1 className="mt-12 max-w-md mx-auto text-3xl text-center uppercase font-bold">
+                <h1 className="px-4 mt-12 max-w-md mx-auto text-xl md:text-3xl text-center uppercase font-bold">
                     Get Your Video Done In These{" "}
                     <span className="text-primary">5 Easy Steps</span>
                 </h1>
 
-                <section className="max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 lg:gap-y-8 justify-center">
+                <section className="px-4 max-w-3xl mx-auto mt-8 flex flex-wrap gap-4 lg:gap-y-8 justify-center">
                     {[
                         {
                             icon: "step1.svg",
@@ -415,7 +415,7 @@ function Landing() {
                     ))}
                 </section>
 
-                <p className="mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">
+                <p className="px-4 mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">
                     Beim Discovery Call schauen wir erstmal, ob es denn auch klick macht
                     zwischen uns. D.h. wir lernen uns ein wenig besser kennen. Eine
                     vertrauensvolle Zusammenarbeit ist mir wichtig. Denn sie macht nicht
@@ -432,8 +432,8 @@ function Landing() {
                             <h1
                                 className={
                                     index % 2 == 0
-                                        ? "text-6xl font-bold uppercase"
-                                        : "text-6xl font-bold uppercase text-stroke-red"
+                                        ? "text-4xl md:text-6xl font-bold uppercase"
+                                        : "text-4xl md:text-6xl font-bold uppercase text-stroke-red"
                                 }
                             >
                                 Our Services
@@ -443,7 +443,7 @@ function Landing() {
 
                 <section className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
                     <div>
-                        <h1 className="text-3xl uppercase font-bold">
+                        <h1 className="text-xl md:text-3xl uppercase font-bold">
                             The exclusive <span className="text-primary">services</span> you
                             are going to <span className="text-primary">get</span>
                         </h1>
@@ -551,7 +551,7 @@ function Landing() {
                             Square, vertical, horizontal (1*1, 4*5, 16*9, 9*16)
                         </p>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 w-full max-w-lg mt-6">
+                        <div className="flex flex-wrap gap-2 w-full max-w-lg mt-6">
                             {[{
                                 icon: "fb.svg",
                                 title: "Facebook",
@@ -602,8 +602,8 @@ function Landing() {
                             <h1
                                 className={
                                     index % 2 == 0
-                                        ? "text-6xl font-bold uppercase"
-                                        : "text-6xl font-bold uppercase text-stroke-yellow"
+                                        ? "text-4xl md:text-6xl font-bold uppercase"
+                                        : "text-4xl md:text-6xl font-bold uppercase text-stroke-yellow"
                                 }
                             >
                                 Portfolio
@@ -612,7 +612,7 @@ function Landing() {
                 </div>
 
                 <section className="py-12">
-                    <h1 className="text-center font-medium uppercase text-3xl max-w-2xl mx-auto">
+                    <h1 className="text-center font-medium uppercase text-xl md:text-3xl max-w-2xl mx-auto">
                         Some of Our Previous{" "}
                         <span className="text-secondary">Selected Works</span> That We Did
                         for Our Clients
@@ -744,8 +744,8 @@ function Landing() {
                         <h1
                             className={
                                 index % 2 == 0
-                                    ? "text-6xl font-bold uppercase"
-                                    : "text-6xl font-bold uppercase text-stroke-yellow"
+                                    ? "text-4xl md:text-6xl font-bold uppercase"
+                                    : "text-4xl md:text-6xl font-bold uppercase text-stroke-yellow"
                             }
                         >
                             Reviews
@@ -754,8 +754,8 @@ function Landing() {
                 </div>
 
                 <section className="py-12">
-                    <div>
-                        <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto mt-5">
+                    <div className="px-4">
+                        <h1 className="text-center font-semibold uppercase text-xl md:text-3xl max-w-lg mx-auto mt-5">
                             Some inspirational <span className="text-secondary">stories</span>{" "}
                             of our <span className="text-secondary">previous clients</span>
                         </h1>
@@ -870,7 +870,7 @@ function Landing() {
                 </section>
 
                 <section className="pt-12">
-                    <div>
+                    <div className="px-4">
                         <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto">
                             What Ours Customers Say About Our{" "}
                             <span className="text-secondary">Services</span>
@@ -952,8 +952,8 @@ function Landing() {
                                 <h1
                                     className={
                                         index % 2 == 0
-                                            ? "text-6xl font-bold uppercase"
-                                            : "text-6xl font-bold uppercase text-stroke-red"
+                                            ? "text-4xl md:text-6xl font-bold uppercase"
+                                            : "text-4xl md:text-6xl font-bold uppercase text-stroke-red"
                                     }
                                 >
                                     Pricing
@@ -963,7 +963,7 @@ function Landing() {
 
                     <div className="px-4 md:px-0">
                         <div className="pb-8 pt-12">
-                            <h1 className="text-center font-semibold uppercase text-3xl max-w-sm mx-auto">
+                            <h1 className="text-center font-semibold uppercase text-xl md:text-3xl max-w-sm mx-auto">
                                 create your <span className="text-primary">video</span> pick a
                                 plan <span className="text-primary">later</span>
                             </h1>
@@ -1335,8 +1335,8 @@ function Landing() {
                                 <h1
                                     className={
                                         index % 2 == 0
-                                            ? "text-6xl font-bold uppercase"
-                                            : "text-6xl font-bold uppercase text-stroke-yellow"
+                                            ? "text-4xl md:text-6xl font-bold uppercase"
+                                            : "text-4xl md:text-6xl font-bold uppercase text-stroke-yellow"
                                     }
                                 >
                                     Hypecut
