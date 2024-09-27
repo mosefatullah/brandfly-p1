@@ -180,7 +180,7 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="pt-14 pb-8 px-4 md:px-0 whitespace-nowrap">
+                <section className="pt-14 pb-8 px-4 md:px-0 whitespace-nowrap overflow-hidden">
                     <Marquee>{[
                         "company1.png",
                         "company2.png",
@@ -305,7 +305,7 @@ function Landing() {
             </section>
             <section className="py-8">
                 <div
-                    className="pt-4 whitespace-nowrap"
+                    className="pt-4 whitespace-nowrap overflow-hidden"
                 >
                     <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
                         <div className="mx-4"
@@ -395,7 +395,7 @@ function Landing() {
             </section>
             <section className="py-8 pb-24">
                 <div
-                    className="pt-4"
+                    className="pt-4 whitespace-nowrap overflow-hidden"
                 >
                     <Marquee>{[1, 2, 3, 4].map((item, index) => (
                         <div className="mx-4"
@@ -565,7 +565,7 @@ function Landing() {
 
             <section className="w-full bg-black -mt-7 rounded-t-2xl text-white">
                 <div
-                    className="pt-12"
+                    className="pt-12 whitespace-nowrap overflow-hidden"
                 >
                     <Marquee>{[1, 2, 3, 4].map((item, index) => (
                         <div className="mx-4"
@@ -711,7 +711,7 @@ function Landing() {
                 </section>
 
                 <div
-                    className="pt-4"
+                    className="pt-4 whitespace-nowrap overflow-hidden"
                 ><Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
                     <div className="mx-4 mt-12"
                         key={index}>
@@ -918,7 +918,7 @@ function Landing() {
             <section className="py-12">
                 <section>
                     <div
-                        className="pt-4"
+                        className="pt-4 whitespace-nowrap overflow-hidden"
                     >
                         <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
                             <div className="mx-4"
@@ -1301,7 +1301,7 @@ function Landing() {
                     </div>
 
                     <div
-                        className="pt-8"
+                        className="pt-8 whitespace-nowrap overflow-hidden"
                     >
                         <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
                             <div className="mx-4"
