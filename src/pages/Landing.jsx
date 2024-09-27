@@ -136,7 +136,7 @@ function Landing() {
                             {["Home", "Pricing", "About Us"].map((item, index) => (
                                 <li
                                     key={index}
-                                    className="hover:bg-primary hover:text-white transition-all hover:scale-105 active:scale-100 select-none"
+                                    className="hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 active:scale-100 select-none"
                                 >
                                     <p className="py-1.5 px-5">{item}</p>
                                 </li>
