@@ -180,8 +180,8 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="pt-14 pb-8 px-4 md:px-0 whitespace-nowrap overflow-hidden">
-                    <Marquee>{[
+                <section className="pt-14 pb-8 px-4 md:px-0 ">
+                    <Marquee className="whitespace-nowrap overflow-hidden">{[
                         "company1.png",
                         "company2.png",
                         "company3.png",
@@ -305,9 +305,9 @@ function Landing() {
             </section>
             <section className="py-8">
                 <div
-                    className="pt-4 whitespace-nowrap overflow-hidden"
+                    className="pt-4"
                 >
-                    <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4, 5, 6].map((item, index) => (
                         <div className="mx-4"
                             key={index}>
                             <h1
@@ -395,9 +395,9 @@ function Landing() {
             </section>
             <section className="py-8 pb-24">
                 <div
-                    className="pt-4 whitespace-nowrap overflow-hidden"
+                    className="pt-4"
                 >
-                    <Marquee>{[1, 2, 3, 4].map((item, index) => (
+                    <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4].map((item, index) => (
                         <div className="mx-4"
                             key={index}>
                             <h1
@@ -565,9 +565,9 @@ function Landing() {
 
             <section className="w-full bg-black -mt-7 rounded-t-2xl text-white">
                 <div
-                    className="pt-12 whitespace-nowrap overflow-hidden"
+                    className="pt-12"
                 >
-                    <Marquee>{[1, 2, 3, 4].map((item, index) => (
+                    <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4].map((item, index) => (
                         <div className="mx-4"
                             key={index}>
                             <h1
@@ -595,7 +595,7 @@ function Landing() {
 
                 <section className="overflow-x-hidden">
                     <div className="flex grid-cols-3 lg:grid-cols-6 justify-center gap-4 mt-5">
-                        {[
+                        <Marquee>{[
                             {
                                 image: "pfl1.png",
                                 title: "YT Shorts",
@@ -627,17 +627,13 @@ function Landing() {
                             {
                                 image: "pfl3.png",
                                 title: "FB Reel",
-                            },
-                            {
-                                image: "pfl1.png",
-                                title: "YT Shorts",
-                            },
+                            }
                         ].map((item, index) => (
-                            <div key={index} className="anim-invrev1 flex flex-col items-center relative min-w-[150px] md:min-w-[220px]">
+                            <div key={index} className="flex flex-col items-center relative max-w-[220px] mx-3">
                                 <img
                                     src={`/images/${item.image}`}
                                     alt="Portfolio"
-                                    className="w-auto"
+                                    className="w-full object-cover"
                                 />
                                 <div className="w-full bg-white text-black p-2 md:p-4">
                                     <div className=" text-smmd:text-lg font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
@@ -652,9 +648,10 @@ function Landing() {
                                 />
                             </div>
                         ))}
+                        </Marquee>
                     </div>
-                    <div className="flex grid-cols-5 gap-4 mt-5">
-                        {[
+                    <div className="mt-5">
+                        <Marquee direction="right">{[
                             {
                                 image: "pfl4.png",
                                 title: "Youtube Video",
@@ -688,11 +685,11 @@ function Landing() {
                                 title: "FB Video",
                             },
                         ].map((item, index) => (
-                            <div key={index} className="anim-invrev2 flex flex-col items-center relative min-w-[200px] md:min-w-[300px]">
+                            <div key={index} className="flex flex-col items-center relative max-w-[300px] mx-3">
                                 <img
                                     src={`/images/${item.image}`}
                                     alt="Portfolio"
-                                    className="w-auto aspect-video"
+                                    className="w-full aspect-video"
                                 />
                                 <div className="w-full bg-white text-black p-2 md:p-4 whitespace-nowrap">
                                     <div className="text-xs md:text-sm font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
@@ -706,13 +703,13 @@ function Landing() {
                                     className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
                                 />
                             </div>
-                        ))}
+                        ))}</Marquee>
                     </div>
                 </section>
 
                 <div
-                    className="pt-4 whitespace-nowrap overflow-hidden"
-                ><Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    className="pt-4"
+                ><Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4, 5, 6].map((item, index) => (
                     <div className="mx-4 mt-12"
                         key={index}>
                         <h1
@@ -918,9 +915,9 @@ function Landing() {
             <section className="py-12">
                 <section>
                     <div
-                        className="pt-4 whitespace-nowrap overflow-hidden"
+                        className="pt-4"
                     >
-                        <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                        <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4, 5, 6].map((item, index) => (
                             <div className="mx-4"
                                 key={index}>
                                 <h1
@@ -1301,9 +1298,9 @@ function Landing() {
                     </div>
 
                     <div
-                        className="pt-8 whitespace-nowrap overflow-hidden"
+                        className="pt-8"
                     >
-                        <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                        <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4, 5, 6].map((item, index) => (
                             <div className="mx-4"
                                 key={index}>
                                 <h1
