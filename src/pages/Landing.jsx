@@ -9,37 +9,9 @@ import "@splidejs/react-splide/css";
 gsap.registerPlugin(ScrollTrigger);
 
 function Landing() {
-    const textTriggers = [
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-    ];
-    const texts = [
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-        useRef(null),
-    ];
     const [pricingCheck, setPricingCheck] = useState(false);
     const [pricingRadio, setPricingRadio] = useState("plan-radio-1");
     const [formRadio, setFormRadio] = useState("form-youtube");
-
-    const makeMove = (element, trigger) => {
-        gsap.to(element, {
-            x: 200,
-            scrollTrigger: {
-                trigger: trigger,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.5,
-            },
-        });
-    };
 
     const makeInvrev = (boxes, sign = "-") => {
         if (boxes.length === 0) return;
@@ -92,13 +64,6 @@ function Landing() {
 
 
     useEffect(() => {
-        textTriggers.forEach((trigger, index) => {
-            if (texts[index].current && trigger.current) {
-                makeMove(texts[index].current, trigger.current);
-            }
-        });
-
-
         const fadeUpElements = gsap.utils.toArray(".fade-up");
         fadeUpElements.forEach(element => {
             gsap.set(element, { y: 100, opacity: 0 });
@@ -121,7 +86,6 @@ function Landing() {
     }, []);
 
     useEffect(() => {
-        makeInvrev(gsap.utils.toArray('.anim-invrev0'), "-");
         makeInvrev(gsap.utils.toArray('.anim-invrev1'), "-");
         makeInvrev(gsap.utils.toArray('.anim-invrev2'), "+");
     }, []);
@@ -216,8 +180,8 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="flex gap-4 overflow-hidden whitespace-nowrap pt-14 pb-8 md:justify-center px-4 md:px-0">
-                    {[
+                <section className="pt-14 pb-8 px-4 md:px-0 whitespace-nowrap">
+                    <Marquee>{[
                         "company1.png",
                         "company2.png",
                         "company3.png",
@@ -226,13 +190,16 @@ function Landing() {
                         "company6.png",
                         "company7.png"
                     ].map((item, index) => (
-                        <img
-                            key={index}
-                            src={`/images/${item}`}
-                            alt="Company Logo"
-                            className="anim-invrev0 w-auto h-[50px] mx-4"
-                        />
+                        <div key={index}
+                            className="h-[50px] mx-6 md:mx-8 lg:mx-12">
+                            <img
+                                src={`/images/${item}`}
+                                alt="Company Logo"
+                                className="h-full"
+                            />
+                        </div>
                     ))}
+                    </Marquee>
                 </section>
 
                 <section className="w-full xl:max-w-7xl mx-auto p-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -264,11 +231,11 @@ function Landing() {
                             className="transition-all fade-up"
                         >
                             <div className="flex flex-col gap-4 hover:scale-105 text-white bg-white/20 rounded-xl p-8 hover:bg-white/15 transition-all group">
-                            <p className="text-5xl font-bold transition-all group-hover:scale-95"><Counter value={item.count} />{item.sign}</p>
-                            <p className="text-2xl text-secondary font-medium uppercase mt-6 transition-all group-hover:scale-95">
-                                {item.title}
-                            </p>
-                            <p className="text-lg font-[300] transition-all group-hover:scale-95">{item.description}</p></div>
+                                <p className="text-5xl font-bold transition-all group-hover:scale-95"><Counter value={item.count} />{item.sign}</p>
+                                <p className="text-2xl text-secondary font-medium uppercase mt-6 transition-all group-hover:scale-95">
+                                    {item.title}
+                                </p>
+                                <p className="text-lg font-[300] transition-all group-hover:scale-95">{item.description}</p></div>
                         </div>
                     ))}
                 </section>
@@ -337,24 +304,22 @@ function Landing() {
                 </section>
             </section>
             <section className="py-8">
-                <div className="w-full overflow-hidden" ref={textTriggers[0]}>
-                    <div
-                        className="flex gap-8 justify-center pt-4 whitespace-nowrap"
-                        ref={texts[0]}
-                    >
-                        {[1, 2, 3, 4, 5, 6].map((item, index) => (
+                <div
+                    className="pt-4 whitespace-nowrap"
+                >
+                    <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                        <div className="mx-4"
+                            key={index}>
                             <h1
                                 className={
                                     index % 2 == 0
                                         ? "text-6xl font-bold uppercase"
                                         : "text-6xl font-bold uppercase text-stroke-red"
                                 }
-                                key={index}
                             >
                                 Process
-                            </h1>
-                        ))}
-                    </div>
+                            </h1></div>
+                    ))}</Marquee>
                 </div>
 
                 <h1 className="mt-12 max-w-md mx-auto text-3xl text-center uppercase font-bold">
@@ -429,25 +394,23 @@ function Landing() {
                 </p>
             </section>
             <section className="py-8 pb-24">
-                <section className="w-full overflow-hidden" ref={textTriggers[1]}>
-                    <div
-                        className="flex gap-8 justify-center pt-4 whitespace-nowrap"
-                        ref={texts[1]}
-                    >
-                        {[1, 2, 3, 4, 5].map((item, index) => (
+                <div
+                    className="pt-4"
+                >
+                    <Marquee>{[1, 2, 3, 4].map((item, index) => (
+                        <div className="mx-4"
+                            key={index}>
                             <h1
                                 className={
-                                    index % 2 == 1
+                                    index % 2 == 0
                                         ? "text-6xl font-bold uppercase"
                                         : "text-6xl font-bold uppercase text-stroke-red"
                                 }
-                                key={index}
                             >
                                 Our Services
-                            </h1>
-                        ))}
-                    </div>
-                </section>
+                            </h1></div>
+                    ))}</Marquee>
+                </div>
 
                 <section className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
                     <div>
@@ -560,41 +523,37 @@ function Landing() {
                         </p>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 w-full max-w-lg mt-6">
-                            <div>
-                                <img
-                                    src="/images/fb.svg"
-                                    alt="Instagram"
-                                    className="md:w-[110px] h-[30px]"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src="/images/ig.svg"
-                                    alt="Instagram"
-                                    className="md:w-[110px] h-[30px]"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src="/images/yt.svg"
-                                    alt="Instagram"
-                                    className="md:w-[100px] h-[30px]"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src="/images/tk.svg"
-                                    alt="Instagram"
-                                    className="md:w-[85px] h-[30px]"
-                                />
-                            </div>
-                            <div>
-                                <img
-                                    src="/images/yn.svg"
-                                    alt="Instagram"
-                                    className="md:w-[180px] h-[30px]"
-                                />
-                            </div>
+                            {[{
+                                icon: "fb.svg",
+                                title: "Facebook",
+                            },
+                            {
+                                icon: "ig.svg",
+                                title: "Instagram",
+                            },
+                            {
+                                icon: "yt.svg",
+                                title: "Youtube",
+                            },
+                            {
+                                icon: "tk.svg",
+                                title: "Tiktok",
+                            },
+                            {
+                                icon: "yn.svg",
+                                title: "You Name It"
+                            }
+                            ]
+                                .map((item, index) => (
+                                    <div key={index} className="flex gap-2 bg-black rounded-3xl items-center w-fit px-3 py-1.5 text-white hover:scale-105 transition-all select-none">
+                                        <img
+                                            src={`/images/${item.icon}`}
+                                            alt="Icon"
+                                            className="w-[15px] h-[15px]"
+                                        />
+                                        <p className="text-xs">{item.title}</p>
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </section>
@@ -605,25 +564,23 @@ function Landing() {
             </section>
 
             <section className="w-full bg-black -mt-7 rounded-t-2xl text-white">
-                <section className="w-full overflow-hidden pt-8" ref={textTriggers[2]}>
-                    <div
-                        className="flex gap-8 justify-center pt-4 whitespace-nowrap"
-                        ref={texts[2]}
-                    >
-                        {[1, 2, 3, 4, 5].map((item, index) => (
+                <div
+                    className="pt-12"
+                >
+                    <Marquee>{[1, 2, 3, 4].map((item, index) => (
+                        <div className="mx-4"
+                            key={index}>
                             <h1
                                 className={
-                                    index % 2 == 1
+                                    index % 2 == 0
                                         ? "text-6xl font-bold uppercase"
                                         : "text-6xl font-bold uppercase text-stroke-yellow"
                                 }
-                                key={index}
                             >
                                 Portfolio
-                            </h1>
-                        ))}
-                    </div>
-                </section>
+                            </h1></div>
+                    ))}</Marquee>
+                </div>
 
                 <section className="py-12">
                     <h1 className="text-center font-medium uppercase text-3xl max-w-2xl mx-auto">
@@ -753,25 +710,22 @@ function Landing() {
                     </div>
                 </section>
 
-                <section className="w-full overflow-hidden pt-8" ref={textTriggers[3]}>
-                    <div
-                        className="flex gap-8 justify-center pt-4 whitespace-nowrap"
-                        ref={texts[3]}
-                    >
-                        {[1, 2, 3, 4, 5, 6].map((item, index) => (
-                            <h1
-                                className={
-                                    index % 2 == 1
-                                        ? "text-6xl font-bold uppercase"
-                                        : "text-6xl font-bold uppercase text-stroke-yellow"
-                                }
-                                key={index}
-                            >
-                                Reviews
-                            </h1>
-                        ))}
-                    </div>
-                </section>
+                <div
+                    className="pt-4"
+                ><Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    <div className="mx-4 mt-12"
+                        key={index}>
+                        <h1
+                            className={
+                                index % 2 == 0
+                                    ? "text-6xl font-bold uppercase"
+                                    : "text-6xl font-bold uppercase text-stroke-yellow"
+                            }
+                        >
+                            Reviews
+                        </h1></div>
+                ))}</Marquee>
+                </div>
 
                 <section className="py-12">
                     <div>
@@ -963,24 +917,22 @@ function Landing() {
 
             <section className="py-12">
                 <section>
-                    <div className="w-full overflow-hidden" ref={textTriggers[4]}>
-                        <div
-                            className="flex gap-8 justify-center pt-4 whitespace-nowrap"
-                            ref={texts[4]}
-                        >
-                            {[1, 2, 3, 4, 5, 6].map((item, index) => (
+                    <div
+                        className="pt-4"
+                    >
+                        <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                            <div className="mx-4"
+                                key={index}>
                                 <h1
                                     className={
-                                        index % 2 == 1
+                                        index % 2 == 0
                                             ? "text-6xl font-bold uppercase"
                                             : "text-6xl font-bold uppercase text-stroke-red"
                                     }
-                                    key={index}
                                 >
                                     Pricing
-                                </h1>
-                            ))}
-                        </div>
+                                </h1></div>
+                        ))}</Marquee>
                     </div>
 
                     <div className="px-4 md:px-0">
@@ -1271,7 +1223,6 @@ function Landing() {
             </section>
             <footer
                 className="w-full bg-black text-white py-14 overflow-hidden px-4 md:px-0"
-                ref={textTriggers[5]}
             >
                 <div>
                     <h1 className="text-4xl text-center max-w-lg mx-auto font-semibold uppercase">
@@ -1350,21 +1301,21 @@ function Landing() {
                     </div>
 
                     <div
-                        className="flex gap-8 justify-center pt-8 whitespace-nowrap"
-                        ref={texts[5]}
+                        className="pt-8"
                     >
-                        {[1, 2, 3, 4, 5].map((item, index) => (
-                            <h1
-                                className={
-                                    index % 2 == 1
-                                        ? "text-6xl font-bold uppercase"
-                                        : "text-6xl font-bold uppercase text-stroke-yellow"
-                                }
-                                key={index}
-                            >
-                                Hypecut
-                            </h1>
-                        ))}
+                        <Marquee>{[1, 2, 3, 4, 5, 6].map((item, index) => (
+                            <div className="mx-4"
+                                key={index}>
+                                <h1
+                                    className={
+                                        index % 2 == 0
+                                            ? "text-6xl font-bold uppercase"
+                                            : "text-6xl font-bold uppercase text-stroke-yellow"
+                                    }
+                                >
+                                    Hypecut
+                                </h1></div>
+                        ))}</Marquee>
                     </div>
                 </div>
             </footer>
