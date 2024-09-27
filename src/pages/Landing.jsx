@@ -174,7 +174,7 @@ function Landing() {
                         <img
                             src="/images/up.svg"
                             alt="Image"
-                            className="w-[220px] h-auto mb-8 ms-4 mb-[90%] -ms-[90%]"
+                            className="w-[220px] h-auto mb-8 relative ms-4 mb-[90%] ms-[-90%]"
                         />
                         <div className="w-full w-[250px] aspect-video border-2 border-black absolute right-[58%] bottom-0">
                             <img src="/images/hero-img-2.svg" alt="Image" className="w-full h-full" />
