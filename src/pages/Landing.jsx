@@ -160,19 +160,19 @@ function Landing() {
             <nav id="navbar" className="w-full">
                 <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
                     <div id="navbar-logo">
-                        <img
+                        <a href="#"><img
                             src="/images/logo.png"
                             alt="Hypecut Logo"
                             className="w-auto h-[20px] md:h-[37px]"
-                        />
+                        /></a>
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="items-center gap-8 text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
+                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
                             {["Home", "Pricing", "About Us"].map((item, index) => (
                                 <li
                                     key={index}
-                                    className={index == 0 ? " text-white bg-primary" : "hover:bg-primary/30 transition-all"}
+                                    className="hover:bg-primary hover:text-white transition-all hover:scale-105 active:scale-100 select-none"
                                 >
                                     <p className="py-1.5 px-5">{item}</p>
                                 </li>
@@ -181,14 +181,14 @@ function Landing() {
                     </div>
 
                     <div id="navbar-action">
-                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2.5px] border-black hover:bg-primary/70 transition-all">
+                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2px] border-black hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
                             Book a Demo
                         </button>
                     </div>
                 </div>
             </nav>
-            <section id="hero" className="min-h-[90vh] pt-8 pb-20">
-                <div className="px-8 w-full xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
+            <section id="hero">
+                <div className="px-8 w-full pt-8 pb-20 min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
                     <div>
                         <h1 className="text-2xl md:text-[42px] leading-tight font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
@@ -198,10 +198,10 @@ function Landing() {
                         </p>
 
                         <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-5">
-                            <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all">
+                            <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
                                 See the Pricing
                             </button>
-                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary/30 transition-all">
+                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary/30 transition-all select-none hover:scale-105 active:scale-100">
                                 Watch How It Works
                             </button>
                         </div>
@@ -224,13 +224,7 @@ function Landing() {
                         "company4.png",
                         "company5.png",
                         "company6.png",
-                        "company7.png",
-                        "company7.png",
-                        "company7.png",
-                        "company7.png",
-                        "company7.png",
-                        "company7.png",
-                        "company7.png",
+                        "company7.png"
                     ].map((item, index) => (
                         <img
                             key={index}
@@ -541,7 +535,7 @@ function Landing() {
                             produced counts as 1 monthly edit credit.
                         </p>
 
-                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 mt-7">
+                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1.5 px-4 mt-7 select-none hover:scale-105 active:scale-100">
                             Order Edit
                         </button>
                     </div>
@@ -604,7 +598,7 @@ function Landing() {
                     </div>
                 </section>
 
-                <button className="block mx-auto bg-primary text-white md:text-lg font-semibold py-1.5 px-3 md:py-2.5 md:px-7 mt-8">
+                <button className="block mx-auto bg-primary text-white md:text-lg font-semibold py-1.5 px-3 md:py-2.5 md:px-7 mt-8 select-none hover:scale-105 active:scale-100">
                     Schedule A Free Strategy Call Now
                 </button>
             </section>
@@ -1164,7 +1158,7 @@ function Landing() {
                                             </p>
                                             <p className="font-semibold text-lg">/mo</p>
                                         </div>
-                                        <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8">
+                                        <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8 select-none hover:scale-105 active:scale-100">
                                             Select Plan
                                         </button>
                                         <div className="h-[80px] pt-5 font-semibold">
@@ -1188,7 +1182,7 @@ function Landing() {
                         quote by reaching us out. We are here 24/7
                     </p>
 
-                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2 px-8 mt-10">
+                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2 px-8 mt-10 select-none hover:scale-105 active:scale-100">
                         Get a Quote
                     </button>
                 </section>
@@ -1238,7 +1232,7 @@ function Landing() {
                                             htmlFor={`form-${s.toLowerCase()}`}
                                             key={i}
                                             className={
-                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80 flex gap-2 items-center" +
+                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80 flex gap-2 items-center select-none hover:scale-105 active:scale-100" +
                                                 (formRadio == `form-${s.toLowerCase()}` &&
                                                     " bg-primary !border-primary text-white")
                                             }
@@ -1249,7 +1243,7 @@ function Landing() {
                                                 checked={formRadio == `form-${s.toLowerCase()}`}
                                                 onChange={() => setFormRadio(`form-${s.toLowerCase()}`)}
                                             />
-                                            <p>{s}</p>
+                                            <p className="cursor-pointer">{s}</p>
                                         </label>
                                     ))}
                                 </div>
@@ -1266,7 +1260,7 @@ function Landing() {
                                     placeholder="Your Text"
                                 ></textarea>
 
-                                <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-6 mt-4">
+                                <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-6 mt-4 select-none hover:scale-105 active:scale-100">
                                     Schedule A Call
                                 </button>
                             </form>
@@ -1284,10 +1278,10 @@ function Landing() {
                         us work <span className="text-secondary">together</span>
                     </h1>
                     <div className="flex justify-center gap-8 mt-7">
-                        <button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4">
+                        <button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
                             See The Plans
                         </button>
-                        <button className="bg-primary text-white text-[16px] font-bold tracking-widest py-2 px-4">
+                        <button className="bg-primary text-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
                             Book a call
                         </button>
                     </div>
