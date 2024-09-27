@@ -152,7 +152,7 @@ function Landing() {
                 </div>
             </nav>
             <section id="hero">
-                <div className="px-8 w-full pt-8 pb-20 min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 items-center">
+                <div className="px-8 w-full pt-8 pb-20 min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
                     <div>
                         <h1 className="text-2xl md:text-[42px] leading-tight font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
@@ -165,17 +165,46 @@ function Landing() {
                             <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
                                 See the Pricing
                             </button>
-                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary/30 transition-all select-none hover:scale-105 active:scale-100">
+                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary hover:text-white transition-all select-none hover:scale-105 active:scale-100">
                                 Watch How It Works
                             </button>
                         </div>
                     </div>
-                    <div>
+                    <div className="relative w-full md:w-auto md:min-w-[500px] mx-auto">
                         <img
+                            src="/images/up.svg"
+                            alt="Image"
+                            className="w-[220px] h-auto mb-8 ms-4"
+                        />
+                        <div className="w-full max-w-[300px] aspect-video border-2 border-black relative">
+                            <img src="/images/hero-img-2.svg" alt="Image" className="w-full h-full" />
+                            <img
+                                src="/images/play-black.svg"
+                                alt="Play"
+                                className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                            />
+                        </div>
+                        <div className="w-full max-w-[200px] aspect-square border-2 border-white absolute bottom-[20%] left-[50%] transform translate-x-[-50%] z-10">
+                            <img src="/images/hero-img-1.svg" alt="Image" className="w-full h-full" />
+                            <img
+                                src="/images/play.svg"
+                                alt="Play"
+                                className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                            />
+                        </div>
+                        <div className="w-full max-w-[200px] aspect-[9/16] border-2 border-black absolute bottom-[10%] left-[50%]">
+                            <img src="/images/hero-img-3.svg" alt="Image" className="w-full h-full" />
+                            <img
+                                src="/images/play-black.svg"
+                                alt="Play"
+                                className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
+                            />
+                        </div>
+                        {/*<img
                             src="/images/hero-cover.png"
                             alt="Hero Image"
-                            className="w-full h-auto"
-                        />
+                            className="w-full max-w-md lg:ms-auto h-auto"
+                        />*/}
                     </div>
                 </div>
             </section>
