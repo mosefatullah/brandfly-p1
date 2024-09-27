@@ -161,22 +161,22 @@ function Landing() {
                             Quick Turnaround And Exceptional Quality Guaranteed
                         </p>
 
-                        <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-5">
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-6 whitespace-nowrap">
                             <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
                                 See the Pricing
                             </button>
-                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2 px-6 hover:bg-primary hover:text-white transition-all select-none hover:scale-105 active:scale-100">
+                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2.5 px-6 hover:bg-primary hover:text-white transition-all select-none hover:scale-105 active:scale-100">
                                 Watch How It Works
                             </button>
                         </div>
                     </div>
-                    <div className="relative w-full md:w-auto md:min-w-[500px] mx-auto">
+                    <div className="relative ms-[33%] md:w-auto mx-auto lg:me-0 lg:ms-auto">
                         <img
                             src="/images/up.svg"
                             alt="Image"
-                            className="w-[220px] h-auto mb-8 ms-4"
+                            className="w-[220px] h-auto mb-8 ms-4 mb-[90%] -ms-[90%]"
                         />
-                        <div className="w-full max-w-[300px] aspect-video border-2 border-black relative">
+                        <div className="w-full w-[250px] aspect-video border-2 border-black absolute right-[58%] bottom-0">
                             <img src="/images/hero-img-2.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play-black.svg"
@@ -184,7 +184,7 @@ function Landing() {
                                 className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                             />
                         </div>
-                        <div className="w-full max-w-[200px] aspect-square border-2 border-white absolute bottom-[20%] left-[50%] transform translate-x-[-50%] z-10">
+                        <div className="w-full max-w-[180px] aspect-square border-2 border-white absolute bottom-[25%] right-[40%] z-10">
                             <img src="/images/hero-img-1.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play.svg"
@@ -192,7 +192,7 @@ function Landing() {
                                 className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                             />
                         </div>
-                        <div className="w-full max-w-[200px] aspect-[9/16] border-2 border-black absolute bottom-[10%] left-[50%]">
+                        <div className="w-full max-w-[160px] aspect-[9/16] border-2 border-black absolute bottom-[15%] right-0">
                             <img src="/images/hero-img-3.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play-black.svg"
