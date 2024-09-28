@@ -5,7 +5,7 @@ export default function DownPlans() {
     const [formRadio, setFormRadio] = useState("form-youtube");
     return (
         <>
-            <section className="bg-black bg-[url('/images/underpricing.png')] text-white bg-cover w-full pb-12 relative -z-10 rounded-t-3xl -mt-[280px] pt-[300px] px-4 text-center">
+            <section className="bg-black bg-[url('/images/underpricing.png')] text-white bg-cover w-full pb-12 rounded-t-3xl -mt-[280px] pt-[300px] px-4 text-center">
                 <h1 className="uppercase text-3xl md:text-4xl font-bold max-w-md mx-auto">
                     Can't find any{" "}
                     <span className="text-secondary">suitable package?</span>
