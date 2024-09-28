@@ -10,7 +10,7 @@ export default {
         secondary: "#fcde02",
       },
       fontFamily: {
-        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        sans: ["Archivo", ...defaultTheme.fontFamily.sans],
       },
     },
   },

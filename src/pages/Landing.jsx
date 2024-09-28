@@ -13,6 +13,95 @@ function Landing() {
     const [pricingRadio, setPricingRadio] = useState("plan-radio-1");
     const [formRadio, setFormRadio] = useState("form-youtube");
 
+    const [userFeedbacks, setFeedbacks] = useState([
+        {
+            active: true,
+            user: {
+                picture: "rec-user1.png",
+                name: "Aurora lilly",
+                position: "Marketing Manager",
+            },
+            comment:
+                "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+            views: "35 Million+",
+            followers: "150000+",
+            cover: "rec1.png",
+        }, {
+            active: false,
+            user: {
+                picture: "rec-user1.png",
+                name: "Ahmad Han",
+                position: "Managing Director",
+            },
+            comment:
+                "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+            views: "25 Million+",
+            followers: "120000+",
+            cover: "rec2.png",
+        }, {
+            active: false,
+            user: {
+                picture: "rec-user1.png",
+                name: "Mehmed Ali",
+                position: "CEO",
+            },
+            comment:
+                "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
+            views: "45 Million+",
+            followers: "154500+",
+            cover: "rec3.png",
+        }
+    ])
+    const getActiveFeedback = () => userFeedbacks.find(feedback => feedback.active);
+    const getActiveFeedbackIndex = () => userFeedbacks.findIndex(feedback => feedback.active);
+
+    const nextFeedback = () => {
+        const currentIndex = getActiveFeedbackIndex();
+        userFeedbacks[currentIndex].active = false;
+        if (currentIndex === userFeedbacks.length - 1) {
+            userFeedbacks[0].active = true;
+        } else {
+            userFeedbacks[currentIndex + 1].active = true;
+        }
+        setFeedbacks([...userFeedbacks]);
+    };
+
+    const prevFeedback = () => {
+        const currentIndex = getActiveFeedbackIndex();
+        userFeedbacks[currentIndex].active = false;
+        if (currentIndex === 0) {
+            userFeedbacks[userFeedbacks.length - 1].active = true;
+        } else {
+            userFeedbacks[currentIndex - 1].active = true;
+        }
+        setFeedbacks([...userFeedbacks]);
+    };
+
+    const getPrevFeedback = () => {
+        const currentIndex = getActiveFeedbackIndex();
+        if (currentIndex === 0) {
+            return userFeedbacks[userFeedbacks.length - 1];
+        } else {
+            return userFeedbacks[currentIndex - 1];
+        }
+    };
+
+    const getNextFeedback = () => {
+        const currentIndex = getActiveFeedbackIndex();
+        if (currentIndex === userFeedbacks.length - 1) {
+            return userFeedbacks[0];
+        } else {
+            return userFeedbacks[currentIndex + 1];
+        }
+    };
+
+    const goToIndexOnFeedback = (index) => {
+        userFeedbacks.forEach((feedback, i) => {
+            feedback.active = i === index;
+        });
+        setFeedbacks([...userFeedbacks]);
+    };
+
     const makeInvrev = (boxes, sign = "-") => {
         if (boxes.length === 0) return;
 
@@ -765,107 +854,69 @@ function Landing() {
                         </p>
                     </div>
 
-                    <div className="py-12 overflow-hidden">
-                        <Splide
-                            tag="section"
-                            hasTrack={false}
-                            options={{
-                                type: "loop",
-                                padding: "20rem",
-                            }}
-                        >
-                            <SplideTrack>
-                                {[
-                                    {
-                                        user: {
-                                            picture: "rec-user1.png",
-                                            name: "Aurora lilly",
-                                            position: "Marketing Manager",
-                                        },
-                                        comment:
-                                            "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
-                                        views: "35 Million+",
-                                        followers: "150000+",
-                                        cover: "rec1.png",
-                                    },
-                                    {
-                                        user: {
-                                            picture: "rec-user1.png",
-                                            name: "Aurora lilly",
-                                            position: "Marketing Manager",
-                                        },
-                                        comment:
-                                            "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
-                                        views: "35 Million+",
-                                        followers: "150000+",
-                                        cover: "rec1.png",
-                                    },
-                                    {
-                                        user: {
-                                            picture: "rec-user1.png",
-                                            name: "Aurora lilly",
-                                            position: "Marketing Manager",
-                                        },
-                                        comment:
-                                            "Their animated explainer video for our new product went viral and boosted sales way beyond expectations. Highly recommend!",
-                                        views: "35 Million+",
-                                        followers: "150000+",
-                                        cover: "rec1.png",
-                                    },
-                                ].map((r, i) => (
-                                    <SplideSlide
-                                        key={i}
-                                        className="flex justify-center max-w-4xl"
-                                    >
-                                        <div className="max-w-2xl rounded-2xl pb-0.5 bg-[#413f3f]">
-                                            <div className="flex gap-8 p-6 border border-white/50 rounded-2xl">
-                                                <div className="flex flex-col justify-between">
-                                                    <div>
-                                                        <div className="flex gap-4">
-                                                            <div>
-                                                                <img
-                                                                    src={"/images/" + r.user.picture}
-                                                                    alt={r.user.name}
-                                                                    className="w-12 h-12"
-                                                                />
-                                                            </div>
-                                                            <div>
-                                                                <h2 className="font-semibold">{r.user.name}</h2>
-                                                                <p>{r.user.position}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <p className="py-8 font-medium text-lg">
-                                                            "{r.comment}"
-                                                        </p>
-                                                    </div>
-                                                    <div className="flex gap-8">
-                                                        <div>
-                                                            <h2 className="font-semibold">{r.views}</h2>
-                                                            <p>Views</p>
-                                                        </div>
-                                                        <div>
-                                                            <h2 className="font-semibold">{r.followers}</h2>
-                                                            <p>Followers Gained</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                    <div className="pt-12 pb-6 overflow-hidden flex justify-center items-center gap-8 transition-all duration-300">
+                        <div className="max-w-[200px] rounded-lg relative">
+                            <img src={"/images/" + getPrevFeedback().cover} alt="Cover" className="w-full" />
+                            <button className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:scale-110 transition-all" onClick={prevFeedback}><img src="/images/go-left.svg" alt="Play" className="w-auto h-[55px]" /></button>
+                        </div>
+                        {[
+                            getActiveFeedback()
+                        ].map((r, i) => (
+                            <div className="max-w-2xl rounded-2xl pb-0.5 bg-[#413f3f] h-fit" key={i}>
+                                <div className="flex gap-8 px-6 py-8 border border-white/50 rounded-2xl">
+                                    <div className="flex flex-col justify-between">
+                                        <div>
+                                            <div className="flex gap-4">
                                                 <div>
                                                     <img
-                                                        src={"/images/" + r.cover}
-                                                        alt="Cover"
-                                                        className="min-w-[200px]"
+                                                        src={"/images/" + r.user.picture}
+                                                        alt={r.user.name}
+                                                        className="w-12 h-12"
                                                     />
                                                 </div>
+                                                <div className="font-[100]">
+                                                    <h2 className="font-semibold">{r.user.name}</h2>
+                                                    <p>{r.user.position}</p>
+                                                </div>
+                                            </div>
+
+                                            <p className="py-8 font-medium text-lg">
+                                                "{r.comment}"
+                                            </p>
+                                        </div>
+                                        <div className="flex gap-8 font-[100]">
+                                            <div>
+                                                <h2 className="font-semibold">{r.views}</h2>
+                                                <p>Views</p>
+                                            </div>
+                                            <div>
+                                                <h2 className="font-semibold">{r.followers}</h2>
+                                                <p>Followers Gained</p>
                                             </div>
                                         </div>
-                                    </SplideSlide>
-                                ))}
-                            </SplideTrack>
-                            <div className="splide__progress">
-                                <div className="splide__progress__bar" />
+                                    </div>
+                                    <div>
+                                        <img
+                                            src={"/images/" + r.cover}
+                                            alt="Cover"
+                                            className="min-w-[200px]"
+                                        />
+                                    </div>
+                                </div>
                             </div>
-                        </Splide>
+                        ))}
+                        <div className="max-w-[200px] rounded-lg relative">
+                            <img src={"/images/" + getNextFeedback().cover} alt="Cover" className="w-full" />
+                            <button className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:scale-110 transition-all" onClick={nextFeedback}><img src="/images/go-right.svg" alt="Play" className="w-auto h-[55px]" /></button>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-center gap-1.5">
+                        {
+                            userFeedbacks.map((item, index) => (
+                                <div key={index} className={"rounded-full cursor-pointer" + (index === getActiveFeedbackIndex() ? " bg-primary w-[28px] h-[12px]" : " bg-white w-[10px] h-[10px] hover:scale-110 transition-all")} onClick={()=>goToIndexOnFeedback(index)}></div>
+                            ))
+                        }
                     </div>
                 </section>
 
