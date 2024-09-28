@@ -5,211 +5,12 @@ import { useEffect, useState } from "react";
 import { Splide } from "@splidejs/react-splide";
 import Counter from './../components/SlotCounter';
 import "@splidejs/react-splide/css";
+import Plans from './../components/Plans';
+import DownPlans from './../components/DownPlans';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Landing() {
-    const [pricingCheck, setPricingCheck] = useState(false);
-    const [pricingRadio, setPricingRadio] = useState("plan-radio-1");
-    const [formRadio, setFormRadio] = useState("form-youtube");
-
-    const plans = [
-        {
-            name: "plan-radio-1", value: [
-                {
-                    title: "Starter",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "4 YouTube videos (HD/4K)",
-                        "5 reels/shorts for any platform",
-                        "Animated subtitles",
-                        "Thumbnails for YouTube videos and reels/shorts",
-                        "Video running time: 10 minutes",
-                        "24/7 assistance via WhatsApp",
-                    ],
-                    cost: 1200,
-                    discount: 1080,
-                    per: "mo",
-                },
-                {
-                    title: "Creator",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "8 YouTube videos (HD/4K)",
-                        "10 reels/shorts for any platform",
-                        "Animated subtitles",
-                        "Thumbnails for YouTube videos and reels/shorts",
-                        "Video running time: 15 minutes",
-                        "24/7 assistance via WhatsApp",
-                        "Trending keywords suggestion",
-                        "Live updates via dedicated CRM",
-                    ],
-                    cost: 2200,
-                    discount: 1870,
-                    per: "mo",
-                },
-                {
-                    title: "Studio",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "16 YouTube videos (HD/4K)",
-                        "20 reels/shorts for any platform",
-                        "Animated subtitles",
-                        "Thumbnails for YouTube videos and reels/shorts",
-                        "Video running time: 20 minutes",
-                        "24/7 assistance via WhatsApp",
-                        "Trending keyword suggestion",
-                        "Live updates via dedicated CRM",
-                        "Hook generation",
-                    ],
-                    cost: 3500,
-                    discount: 2625,
-                    per: "mo",
-                    term: "* Contact us for personalized pricing and services",
-                },
-            ]
-        },
-        {
-            name: "plan-radio-2", value: [
-                {
-                    title: "Basic",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "1 active videos at a time",
-                        "2-4 business days turnaround",
-                        "Dedicated video editor",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 6999,
-                    discount: 6299,
-                    per: "mo",
-                },
-                {
-                    title: "Starter",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "2 active videos at a time",
-                        "2-4 business days turnaround",
-                        "Dedicated video editor team",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 9999,
-                    discount: 7999,
-                    per: "mo",
-                },
-                {
-                    title: "Premium",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "3 active videos at a time",
-                        "2-4 business days turnaround",
-                        "Dedicated video editor team",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 3500,
-                    discount: 2625,
-                    per: "mo",
-                    term: "* Contact us for personalized pricing and services",
-                },
-            ]
-        },
-        {
-            name: "plan-radio-3", value: [
-                {
-                    title: "Basic",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "1 active videos at a time",
-                        "1-2 business days turnaround",
-                        "Dedicated video editor",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 1500,
-                    discount: 1350,
-                    per: "mo",
-                },
-                {
-                    title: "Starter",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "2 active videos at a time",
-                        "1-2 business days turnaround",
-                        "Dedicated video editor team",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 1900,
-                    discount: 1650,
-                    per: "mo",
-                },
-                {
-                    title: "Premium",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "Unlimited video edits every month",
-                        "3 active videos at a time",
-                        "2-4 business days turnaround",
-                        "Dedicated video editor team",
-                        "Royalty-free music, footage, and assets"
-                    ],
-                    cost: 2800,
-                    discount: 2100,
-                    per: "mo",
-                    term: "* Contact us for personalized pricing and services",
-                },
-            ]
-        },
-        {
-            name: "plan-radio-4", value: [
-                {
-                    title: "TikTok/Reel/YouTube Short",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "4 YouTube videos (HD/4K)",
-                        "5 reels/shorts for any platform",
-                        "Animated subtitles",
-                        "Thumbnails for YouTube videos and reels/shorts",
-                        "Video running time: 10 minutes",
-                        "24/7 assistance via WhatsApp",
-                    ],
-                    cost: 200,
-                    per: "video"
-                },
-                {
-                    title: "Long-Form Video Edit",
-                    subtle:
-                        "Display stars in Google organic search result and showcase.",
-                    features: [
-                        "8 YouTube videos (HD/4K)",
-                        "10 reels/shorts for any platform",
-                        "Animated subtitles",
-                        "Thumbnails for YouTube videos and reels/shorts",
-                        "Video running time: 15 minutes",
-                        "24/7 assistance via WhatsApp",
-                        "Trending keywords suggestion",
-                        "Live updates via dedicated CRM",
-                    ],
-                    cost: 750,
-                    per: "video"
-                },
-            ]
-        }
-    ];
-    const currentPlans = plans.filter(({ name }) => pricingRadio == name)[0]?.value;
     const [userFeedbacks, setFeedbacks] = useState([
         {
             active: true,
@@ -381,65 +182,7 @@ function Landing() {
 
     return (
         <>
-            <header
-                id="header"
-                className="w-full bg-primary text-white text-[14px] tracking-widest font-medium uppercase py-1.5 whitespace-nowrap"
-            >
-                <Marquee>
-                    {[
-                        "Free First Video",
-                        "7 Days Free Trial",
-                        "100% Money-Back Guarantee",
-                        "Free First Video",
-                        "7 Days Free Trial",
-                        "100% Money-Back Guarantee",
-                    ].map((item, index) => (
-                        <div key={index} className="flex items-center gap-4 mx-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 384 512"
-                                width={13}
-                                height={13}
-                                className="fill-secondary"
-                            >
-                                <path d="M192 32c17.7 0 32 14.3 32 32l0 135.5 111.5-66.9c15.2-9.1 34.8-4.2 43.9 11s4.2 34.8-11 43.9L254.2 256l114.3 68.6c15.2 9.1 20.1 28.7 11 43.9s-28.7 20.1-43.9 11L224 312.5 224 448c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-135.5L48.5 379.4c-15.2 9.1-34.8 4.2-43.9-11s-4.2-34.8 11-43.9L129.8 256 15.5 187.4c-15.2-9.1-20.1-28.7-11-43.9s28.7-20.1 43.9-11L160 199.5 160 64c0-17.7 14.3-32 32-32z" />
-                            </svg>{" "}
-                            {item}
-                        </div>
-                    ))}
-                </Marquee>
-            </header>
-            <nav id="navbar" className="w-full">
-                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
-                    <div id="navbar-logo">
-                        <a href="#"><img
-                            src="/images/logo.png"
-                            alt="Hypecut Logo"
-                            className="w-auto h-[20px] md:h-[37px]"
-                        /></a>
-                    </div>
-
-                    <div id="navbar-menu">
-                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
-                            {["Home", "Pricing", "About Us"].map((item, index) => (
-                                <li
-                                    key={index}
-                                    className="hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 active:scale-100 select-none"
-                                >
-                                    <p className="py-1.5 px-5">{item}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div id="navbar-action">
-                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2px] border-black hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
-                            Book a Demo
-                        </button>
-                    </div>
-                </div>
-            </nav>
-            <section id="hero">
+            <section>
                 <div className="px-8 w-full pt-8 pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
                     <div>
                         <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
@@ -874,7 +617,6 @@ function Landing() {
                     Schedule A Free Strategy Call Now
                 </button>
             </section>
-
             <section className="w-full bg-black -mt-7 rounded-t-2xl text-white">
                 <div
                     className="pt-12"
@@ -894,7 +636,7 @@ function Landing() {
                     ))}</Marquee>
                 </div>
 
-                <section className="py-12">
+                <section className="py-12 px-4">
                     <h1 className="text-center font-medium uppercase text-xl md:text-3xl max-w-2xl mx-auto">
                         Some of Our Previous{" "}
                         <span className="text-secondary">Selected Works</span> That We Did
@@ -1060,7 +802,7 @@ function Landing() {
                                 <div className="flex flex-col md:flex-row gap-8 px-6 py-8 border border-white/50 rounded-2xl">
                                     <div className="flex flex-col justify-between">
                                         <div>
-                                            <div className="flex flex-col md:flex-row gap-4">
+                                            <div className="flex gap-4">
                                                 <div>
                                                     <img
                                                         src={"/images/" + r.user.picture}
@@ -1116,7 +858,7 @@ function Landing() {
 
                 <section className="pt-12">
                     <div className="px-4">
-                        <h1 className="text-center font-semibold uppercase text-3xl max-w-lg mx-auto">
+                        <h1 className="text-center font-semibold uppercase text-2xl md:text-3xl max-w-lg mx-auto">
                             What Ours Customers Say About Our{" "}
                             <span className="text-secondary">Services</span>
                         </h1>
@@ -1185,7 +927,6 @@ function Landing() {
                     </div>
                 </section>
             </section>
-
             <section className="py-12">
                 <section>
                     <div
@@ -1208,7 +949,7 @@ function Landing() {
 
                     <div className="px-4 lg:px-0">
                         <div className="pb-8 pt-12">
-                            <h1 className="text-center font-semibold uppercase text-xl md:text-3xl max-w-sm mx-auto">
+                            <h1 className="text-center font-semibold uppercase text-2xl md:text-3xl max-w-sm mx-auto">
                                 create your <span className="text-primary">video</span> pick a
                                 plan <span className="text-primary">later</span>
                             </h1>
@@ -1219,324 +960,12 @@ function Landing() {
                             </p>
                         </div>
 
-                        <div className="flex gap-2 items-center w-fit mx-auto">
-                            <button
-                                className="font-semibold"
-                                onClick={() => setPricingCheck(false)}
-                            >
-                                Monthly
-                            </button>
-                            <label className="inline-flex items-center cursor-pointer">
-                                <input
-                                    type="checkbox"
-                                    checked={pricingCheck}
-                                    onChange={(e) => setPricingCheck(e.currentTarget.checked)}
-                                    className="sr-only peer"
-                                />
-                                <div className="relative w-12 py-3 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
-                            </label>
-                            <button
-                                className="font-semibold"
-                                onClick={() => setPricingCheck(true)}
-                            >
-                                Yearly
-                            </button>
-                            <div className="text-primary h-fit text-[10px] py-0.5 font-medium px-2 rounded-full border border-primary flex items-center">
-                                <p>35% OFF</p>
-                            </div>
-                        </div>
-
-                        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:justify-between gap-4 py-12">
-                            <div className="lg:me-6">
-                                <h1 className="!max-w-[200px] font-bold uppercase text-3xl max-w-sm">
-                                    Pick Your <span className="text-primary">Plan</span>
-                                </h1>
-
-                                <div className="my-8">
-                                    {[
-                                        {
-                                            id: "plan-radio-1",
-                                            label: "Monthly Video Editing Service"
-                                        },
-                                        {
-                                            id: "plan-radio-2",
-                                            label: "Unlimited Long-Form Video"
-                                        },
-                                        {
-                                            id: "plan-radio-3",
-                                            label: "Unlimited Reels/Tiktok/Shorts"
-                                        },
-                                        {
-                                            id: "plan-radio-4",
-                                            label: "Single Video Edits"
-                                        },
-                                    ].map((p, i) => (
-                                        <div className="flex items-center my-2 whitespace-nowrap" key={i}>
-                                            <input
-                                                type="radio"
-                                                className={
-                                                    "w-4 h-4 checked:bg-primary text-primary" + (pricingRadio == p.id && " font-semibold")
-                                                }
-                                                id={p.id}
-                                                checked={pricingRadio == p.id}
-                                                onChange={() => setPricingRadio(p.id)}
-                                            />
-                                            <label
-                                                htmlFor={p.id}
-                                                className={"ms-2 font-medium" + (pricingRadio == p.id && " text-primary font-semibold")}
-                                            >
-                                                {p.label}
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <p>
-                                    Choose the Pricing Plan that{" "}
-                                    <span className="font-semibold">works best</span> for your
-                                    business.
-                                </p>
-                            </div>
-                            {
-                                currentPlans?.map((p, i) => (
-                                    <div
-                                        key={i}
-                                        className="border-[2.5px] border-black p-4 flex flex-col justify-between bg-white"
-                                    >
-                                        <div>
-                                            <h1 className="font-semibold uppercase text-3xl text-primary">
-                                                {p.title}
-                                            </h1>
-
-                                            <p className="mt-4 font-semibold">{p.subtle}</p>
-
-                                            <ul className="ms-4 mt-6 list-disc font-[300]">
-                                                {p.features.map((f, ii) => (
-                                                    <li key={ii} className="my-2">
-                                                        {f}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        <div className="mt-12 text-center">
-                                            <p className="text-2xl" hidden={!p.discount}>
-                                                <del>${p.cost}</del>
-                                            </p>
-                                            <div className="flex gap-0.5 justify-center items-end">
-                                                <p className="text-3xl font-bold text-primary">
-                                                    ${p.discount || p.cost}
-                                                </p>
-                                                <p className="font-semibold text-lg">/{p.per}</p>
-                                            </div>
-                                            <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8 select-none hover:scale-105 active:scale-100">
-                                                Select Plan
-                                            </button>
-                                            <div className="h-[80px] pt-5 font-semibold">
-                                                {p.term || ""}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
+                        <Plans />
                     </div>
                 </section>
 
-                <section className="bg-black bg-[url('/images/underpricing.png')] text-white bg-cover w-full pb-12 relative -z-10 rounded-t-3xl -mt-[280px] pt-[300px] px-4 text-center">
-                    <h1 className="uppercase text-4xl font-bold max-w-md mx-auto">
-                        Can't find any{" "}
-                        <span className="text-secondary">suitable package?</span>
-                    </h1>
-
-                    <p className="text-lg max-w-lg mx-auto my-5">
-                        if you cant find any suitable package here you can always ask for a
-                        quote by reaching us out. We are here 24/7
-                    </p>
-
-                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2 px-8 mt-10 select-none hover:scale-105 active:scale-100 cursor-pointer transition-all">
-                        Get a Quote
-                    </button>
-                </section>
-
-                <div className="px-4 md:px-0">
-                    <section className="grid lg:grid-cols-2 gap-6 max-w-5xl mx-auto pt-14">
-                        <div>
-                            <h1 className="uppercase text-4xl font-bold">
-                                Book a Call <span className="text-primary">Today</span>
-                            </h1>
-
-                            <p className="my-5 mt-6">
-                                Have any query in mind? Just book a call today and we will discuss
-                                them together.
-                            </p>
-                            <p className="my-5">
-                                Save upto 70% from your first month Subscription
-                            </p>
-                            <p className="my-5">
-                                Everyone you will hire is well trained to deliver files as you
-                                want
-                            </p>
-                        </div>
-                        <div>
-                            <form action="" className="flex flex-col gap-3">
-                                <div className="grid grid-cols-2 gap-3">
-                                    <input
-                                        type="text"
-                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
-                                        placeholder="Name"
-                                    />
-                                    <input
-                                        type="tel"
-                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
-                                        placeholder="Phone Number"
-                                    />
-                                </div>
-                                <input
-                                    type="tel"
-                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
-                                    placeholder="Email"
-                                />
-                                <h2 className="font-semibold">I Want Video Editing for</h2>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                                    {["Youtube", "Instagram", "Other"].map((s, i) => (
-                                        <label
-                                            htmlFor={`form-${s.toLowerCase()}`}
-                                            key={i}
-                                            className={
-                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80 flex gap-2 items-center select-none hover:scale-105 active:scale-100" +
-                                                (formRadio == `form-${s.toLowerCase()}` &&
-                                                    " bg-primary !border-primary text-white")
-                                            }
-                                        >
-                                            <input
-                                                type="radio"
-                                                id={`form-${s.toLowerCase()}`}
-                                                checked={formRadio == `form-${s.toLowerCase()}`}
-                                                onChange={() => setFormRadio(`form-${s.toLowerCase()}`)}
-                                            />
-                                            <p className="cursor-pointer">{s}</p>
-                                        </label>
-                                    ))}
-                                </div>
-                                <select
-                                    type="tel"
-                                    className="px-4 py-2.5 bg-white border-2 border-black/50"
-                                >
-                                    <option value="">Select Your Budget</option>
-                                </select>
-                                <h2 className="font-semibold">Describe Your Project</h2>
-                                <textarea
-                                    rows={5}
-                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
-                                    placeholder="Your Text"
-                                ></textarea>
-
-                                <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-6 mt-4 select-none hover:scale-105 active:scale-100">
-                                    Schedule A Call
-                                </button>
-                            </form>
-                        </div>
-                    </section>
-                </div>
+                <DownPlans />
             </section>
-            <footer
-                className="w-full bg-black text-white py-14 overflow-hidden px-4 md:px-0"
-            >
-                <div>
-                    <h1 className="text-4xl text-center max-w-lg mx-auto font-semibold uppercase">
-                        Have a <span className="text-secondary">project</span> in mind? Let
-                        us work <span className="text-secondary">together</span>
-                    </h1>
-                    <div className="flex justify-center gap-8 mt-7">
-                        <button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
-                            See The Plans
-                        </button>
-                        <button className="bg-primary text-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
-                            Book a call
-                        </button>
-                    </div>
-
-                    <div className="max-w-7xl mx-auto">
-                        <hr className="border border-white my-12" />
-
-                        <div className="w-full flex flex-col md:flex-row md:justify-between">
-                            <div className="flex gap-4 lg:gap-6">
-                                {[{
-                                    icon: "li.svg",
-                                    link: "#",
-                                }, {
-                                    icon: "tw.svg",
-                                    link: "#",
-                                }, {
-                                    icon: "ins.svg",
-                                    link: "#",
-                                }, {
-                                    icon: "fab.svg",
-                                    link: "#",
-                                }, {
-                                    icon: "yot.svg",
-                                    link: "#",
-                                }]
-                                    .map((item, index) => (
-                                        <a
-                                            key={index}
-                                            href={item.link}
-                                        >
-                                            <img
-                                                src={`/images/${item.icon}`}
-                                                alt="Icon"
-                                                className="w-auto h-[20px] mb-4"
-                                            />
-                                        </a>
-                                    ))}
-                            </div>
-                            <div className="w-fit flex gap-4 lg:gap-8 whitespace-nowrap">
-                                {[{
-                                    link: "#",
-                                    title: "General Info",
-                                }, {
-                                    link: "#",
-                                    title: "Privacy Policy",
-                                }, {
-                                    link: "#",
-                                    title: "Terms of Use",
-                                }]
-                                    .map((item, index) => (
-                                        <a
-                                            key={index}
-                                            href={item.link}
-                                        >
-                                            {item.title}
-                                        </a>
-                                    ))}
-                            </div>
-                        </div>
-
-                        <p className="font-medium text-center my-4">
-                            &copy; {new Date().getFullYear() || "2024"} by Hypecut. All rights
-                            reserved.
-                        </p>
-                    </div>
-
-                    <div
-                        className="pt-8"
-                    >
-                        <Marquee className="whitespace-nowrap overflow-hidden">{[1, 2, 3, 4, 5, 6].map((item, index) => (
-                            <div className="mx-4"
-                                key={index}>
-                                <h1
-                                    className={
-                                        index % 2 == 0
-                                            ? "text-4xl md:text-6xl font-bold uppercase"
-                                            : "text-4xl md:text-6xl font-bold uppercase text-stroke-yellow"
-                                    }
-                                >
-                                    Hypecut
-                                </h1></div>
-                        ))}</Marquee>
-                    </div>
-                </div>
-            </footer>
         </>
     );
 }
