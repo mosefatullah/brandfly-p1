@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
     return (
@@ -35,15 +35,15 @@ export default function Navbar() {
             <nav id="navbar" className="w-full">
                 <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
                     <div id="navbar-logo">
-                        <a href="#"><img
+                        <Link to="/"><img
                             src="/images/logo.png"
                             alt="Hypecut Logo"
                             className="w-auto h-[20px] md:h-[37px]"
-                        /></a>
+                        /></Link>
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer gap-1">
+                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer gap-[1px]">
                             {[{ title: "Home", link: "/" }, { title: "Pricing", link: "/pricing" }, { title: "About Us", link: "/about-us" }].map((item, index) => (
                                 <NavLink
                                     to={item.link}

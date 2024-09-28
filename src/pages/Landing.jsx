@@ -7,6 +7,7 @@ import Plans from './../components/Plans';
 import DownPlans from './../components/DownPlans';
 import Counts from './../components/Counts';
 import "@splidejs/react-splide/css";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,12 +121,12 @@ function Landing() {
                         </p>
 
                         <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-6 whitespace-nowrap">
-                            <button className="bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
+                            <Link to="/pricing"><button className="h-full bg-primary text-white text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 md:py-2 px-6 hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
                                 See the Pricing
-                            </button>
-                            <button className="bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest  py-2.5 px-6 hover:bg-primary hover:text-white transition-all select-none hover:scale-105 active:scale-100">
+                            </button></Link>
+                            <Link to="/about-us"><button className="h-full bg-transparent border-[2.5px] border-black text-xs md:text-[18px] font-bold uppercase tracking-widest py-2.5 px-6 hover:bg-primary hover:text-white transition-all select-none hover:scale-105 active:scale-100">
                                 Watch How It Works
-                            </button>
+                            </button></Link>
                         </div>
                     </div>
                     <div className="relative ms-[33%] md:w-auto mx-auto lg:me-0 lg:ms-auto">
