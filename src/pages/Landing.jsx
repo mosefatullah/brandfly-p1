@@ -405,7 +405,7 @@ function Landing() {
                         ].map((item, index) => (
                             <div
                                 key={index}
-                                className="flex flex-col gap-4 text-white h-full"
+                                className="flex flex-col gap-4 text-white h-full hover:scale-105 transition-all"
                             >
                                 <img
                                     src={`/images/${item.icon}`}
@@ -582,7 +582,7 @@ function Landing() {
                                     <img
                                         src={`/images/${item.icon}`}
                                         alt="Icon"
-                                        className="w-[20px] h-[20px]"
+                                        className="w-[20px] h-[20px] transition-all hover:scale-[1.25]"
                                     />
                                     <p className="text-sm">{item.title}</p>
                                 </div>
