@@ -8,7 +8,7 @@ export default {
    colors: {
     primary: "#ef1d25",
     secondary: "#fcde02",
-    typography: "#3C3C3C"
+    typography: "#020202"
    },
    fontFamily: {
     sans: ["Archivo", ...defaultTheme.fontFamily.sans],
