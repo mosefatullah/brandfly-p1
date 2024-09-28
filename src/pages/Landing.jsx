@@ -1,8 +1,8 @@
 import Marquee from "react-fast-marquee";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { useEffect, useState } from "react";
+import { Splide } from "@splidejs/react-splide";
 import Counter from './../components/SlotCounter';
 import "@splidejs/react-splide/css";
 
@@ -13,6 +13,203 @@ function Landing() {
     const [pricingRadio, setPricingRadio] = useState("plan-radio-1");
     const [formRadio, setFormRadio] = useState("form-youtube");
 
+    const plans = [
+        {
+            name: "plan-radio-1", value: [
+                {
+                    title: "Starter",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "4 YouTube videos (HD/4K)",
+                        "5 reels/shorts for any platform",
+                        "Animated subtitles",
+                        "Thumbnails for YouTube videos and reels/shorts",
+                        "Video running time: 10 minutes",
+                        "24/7 assistance via WhatsApp",
+                    ],
+                    cost: 1200,
+                    discount: 1080,
+                    per: "mo",
+                },
+                {
+                    title: "Creator",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "8 YouTube videos (HD/4K)",
+                        "10 reels/shorts for any platform",
+                        "Animated subtitles",
+                        "Thumbnails for YouTube videos and reels/shorts",
+                        "Video running time: 15 minutes",
+                        "24/7 assistance via WhatsApp",
+                        "Trending keywords suggestion",
+                        "Live updates via dedicated CRM",
+                    ],
+                    cost: 2200,
+                    discount: 1870,
+                    per: "mo",
+                },
+                {
+                    title: "Studio",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "16 YouTube videos (HD/4K)",
+                        "20 reels/shorts for any platform",
+                        "Animated subtitles",
+                        "Thumbnails for YouTube videos and reels/shorts",
+                        "Video running time: 20 minutes",
+                        "24/7 assistance via WhatsApp",
+                        "Trending keyword suggestion",
+                        "Live updates via dedicated CRM",
+                        "Hook generation",
+                    ],
+                    cost: 3500,
+                    discount: 2625,
+                    per: "mo",
+                    term: "* Contact us for personalized pricing and services",
+                },
+            ]
+        },
+        {
+            name: "plan-radio-2", value: [
+                {
+                    title: "Basic",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "1 active videos at a time",
+                        "2-4 business days turnaround",
+                        "Dedicated video editor",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 6999,
+                    discount: 6299,
+                    per: "mo",
+                },
+                {
+                    title: "Starter",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "2 active videos at a time",
+                        "2-4 business days turnaround",
+                        "Dedicated video editor team",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 9999,
+                    discount: 7999,
+                    per: "mo",
+                },
+                {
+                    title: "Premium",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "3 active videos at a time",
+                        "2-4 business days turnaround",
+                        "Dedicated video editor team",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 3500,
+                    discount: 2625,
+                    per: "mo",
+                    term: "* Contact us for personalized pricing and services",
+                },
+            ]
+        },
+        {
+            name: "plan-radio-3", value: [
+                {
+                    title: "Basic",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "1 active videos at a time",
+                        "1-2 business days turnaround",
+                        "Dedicated video editor",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 1500,
+                    discount: 1350,
+                    per: "mo",
+                },
+                {
+                    title: "Starter",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "2 active videos at a time",
+                        "1-2 business days turnaround",
+                        "Dedicated video editor team",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 1900,
+                    discount: 1650,
+                    per: "mo",
+                },
+                {
+                    title: "Premium",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "Unlimited video edits every month",
+                        "3 active videos at a time",
+                        "2-4 business days turnaround",
+                        "Dedicated video editor team",
+                        "Royalty-free music, footage, and assets"
+                    ],
+                    cost: 2800,
+                    discount: 2100,
+                    per: "mo",
+                    term: "* Contact us for personalized pricing and services",
+                },
+            ]
+        },
+        {
+            name: "plan-radio-4", value: [
+                {
+                    title: "TikTok/Reel/YouTube Short",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "4 YouTube videos (HD/4K)",
+                        "5 reels/shorts for any platform",
+                        "Animated subtitles",
+                        "Thumbnails for YouTube videos and reels/shorts",
+                        "Video running time: 10 minutes",
+                        "24/7 assistance via WhatsApp",
+                    ],
+                    cost: 200,
+                    per: "video"
+                },
+                {
+                    title: "Long-Form Video Edit",
+                    subtle:
+                        "Display stars in Google organic search result and showcase.",
+                    features: [
+                        "8 YouTube videos (HD/4K)",
+                        "10 reels/shorts for any platform",
+                        "Animated subtitles",
+                        "Thumbnails for YouTube videos and reels/shorts",
+                        "Video running time: 15 minutes",
+                        "24/7 assistance via WhatsApp",
+                        "Trending keywords suggestion",
+                        "Live updates via dedicated CRM",
+                    ],
+                    cost: 750,
+                    per: "video"
+                },
+            ]
+        }
+    ];
+    const currentPlans = plans.filter(({ name }) => pricingRadio == name)[0]?.value;
     const [userFeedbacks, setFeedbacks] = useState([
         {
             active: true,
@@ -172,11 +369,13 @@ function Landing() {
         });
 
         ScrollTrigger.refresh();
-    }, []);
 
-    useEffect(() => {
         makeInvrev(gsap.utils.toArray('.anim-invrev1'), "-");
         makeInvrev(gsap.utils.toArray('.anim-invrev2'), "+");
+
+        setInterval(() => {
+            prevFeedback();
+        }, 5000);
     }, []);
 
 
@@ -241,12 +440,12 @@ function Landing() {
                 </div>
             </nav>
             <section id="hero">
-                <div className="px-8 w-full pt-8 pb-20 min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
+                <div className="px-8 w-full pt-8 pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
                     <div>
-                        <h1 className="text-2xl md:text-[42px] leading-tight font-bold uppercase">
+                        <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
                         </h1>
-                        <p className="py-4 text-sm md:text-[24px] font-medium">
+                        <p className="py-4 text-sm md:text-[24px] font-medium leading-8">
                             Quick Turnaround And Exceptional Quality Guaranteed
                         </p>
 
@@ -263,9 +462,9 @@ function Landing() {
                         <img
                             src="/images/up.svg"
                             alt="Image"
-                            className="w-[220px] h-auto mb-8 relative ms-4 mb-[90%] ms-[-90%]"
+                            className="w-[220px] h-auto mb-8 relative ms-4 mb-[105%] ms-[-82%]"
                         />
-                        <div className="w-full w-[250px] aspect-video border-2 border-black absolute right-[58%] bottom-0">
+                        <div className="w-[300px] aspect-video border-2 border-black absolute right-[58%] bottom-[10%] hover:scale-[1.25] transition-all">
                             <img src="/images/hero-img-2.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play-black.svg"
@@ -273,7 +472,7 @@ function Landing() {
                                 className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                             />
                         </div>
-                        <div className="w-full max-w-[180px] aspect-square border-2 border-white absolute bottom-[25%] right-[40%] z-10">
+                        <div className="w-full max-w-[180px] aspect-square border-2 border-white absolute bottom-[28%] right-[40%] z-10 hover:scale-[1.25] transition-all">
                             <img src="/images/hero-img-1.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play.svg"
@@ -281,7 +480,7 @@ function Landing() {
                                 className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                             />
                         </div>
-                        <div className="w-full max-w-[160px] aspect-[9/16] border-2 border-black absolute bottom-[15%] right-0">
+                        <div className="w-full max-w-[160px] aspect-[9/16] border-2 border-black absolute bottom-[19%] right-0 hover:scale-[1.25] transition-all">
                             <img src="/images/hero-img-3.svg" alt="Image" className="w-full h-full" />
                             <img
                                 src="/images/play-black.svg"
@@ -289,11 +488,6 @@ function Landing() {
                                 className="h-auto absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%]"
                             />
                         </div>
-                        {/*<img
-                            src="/images/hero-cover.png"
-                            alt="Hero Image"
-                            className="w-full max-w-md lg:ms-auto h-auto"
-                        />*/}
                     </div>
                 </div>
             </section>
@@ -359,7 +553,7 @@ function Landing() {
                 </section>
 
                 <section className="p-8 pb-16">
-                    <h1 className="text-3xl uppercase font-bold text-white w-full max-w-xl mx-auto text-center">
+                    <h1 className="text-3xl uppercase font-medium text-white w-full max-w-xl mx-auto text-center">
                         <span className="text-secondary">Exclusive Benefits</span> You Will
                         Get By Working <span className="text-secondary">With Us</span>
                     </h1>
@@ -497,14 +691,14 @@ function Landing() {
                                 alt="Icon"
                                 className="w-auto h-[200px] object-contain"
                             />
-                            <p className="text-lg font-medium uppercase">
+                            <p className="text-lg font-semibold uppercase">
                                 {item.titleComponent}
                             </p>
                         </div>
                     ))}
                 </section>
 
-                <p className="px-4 mt-12 max-w-3xl mx-auto text-center text-gray-500 text-sm">
+                <p className="px-4 mt-12 max-w-3xl mx-auto text-center font-[300] text-typography text-sm">
                     Beim Discovery Call schauen wir erstmal, ob es denn auch klick macht
                     zwischen uns. D.h. wir lernen uns ein wenig besser kennen. Eine
                     vertrauensvolle Zusammenarbeit ist mir wichtig. Denn sie macht nicht
@@ -596,22 +790,22 @@ function Landing() {
                             before ordering.
                         </p>
                     </div>
-                    <div className="border-2 border-black p-8 h-fit">
-                        <h1 className="text-2xl font-medium leading-6">
+                    <div className="border-[2.5px] border-black p-8 h-fit">
+                        <h1 className="text-2xl font-semibold leading-6">
                             <span className="text-primary">Repurpose</span> Longform Content
                         </h1>
-                        <hr className="my-4 border-[1px] border-black" />
-                        <p className="text-sm">
+                        <hr className="my-4 border-b-[2.5px] border-b-black" />
+                        <p className="text-sm font-[300]">
                             Repurpose new or existing longform content i.e podcasts of YouTube
                             Videos into clips for TikTok, Reels or YouTube Shorts. Each clip
                             produced counts as 1 monthly edit credit.
                         </p>
 
-                        <h1 className="text-2xl font-medium leading-6 mt-8">
+                        <h1 className="text-2xl font-semibold leading-6 mt-8">
                             Grow Faster With A <span className="text-primary">CTA</span>
                         </h1>
-                        <hr className="my-4 border-[1px] border-black" />
-                        <p className="text-sm">
+                        <hr className="my-4 border-b-[2.5px] border-b-black" />
+                        <p className="text-sm font-[300]">
                             Repurpose new or existing longform content i.e podcasts of YouTube
                             Videos into clips for TikTok, Reels or YouTube Shorts. Each clip
                             produced counts as 1 monthly edit credit.
@@ -706,7 +900,7 @@ function Landing() {
                         <span className="text-secondary">Selected Works</span> That We Did
                         for Our Clients
                     </h1>
-                    <p className="max-w-sm text-center font-[300] mx-auto mt-6">
+                    <p className="max-w-lg text-center font-[300] mx-auto mt-6">
                         Convince your visitors with dear user guidance and a strong concept.
                     </p>
                 </section>
@@ -753,7 +947,7 @@ function Landing() {
                                     alt="Portfolio"
                                     className="w-full object-cover"
                                 />
-                                <div className="w-full bg-white text-black p-2 md:p-4">
+                                <div className="w-full bg-white text-typography p-2 md:p-4">
                                     <div className=" text-smmd:text-lg font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
                                         {item.title}
                                     </div>
@@ -762,7 +956,7 @@ function Landing() {
                                 <img
                                     src="/images/play.svg"
                                     alt=""
-                                    className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                                    className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%] hover:scale-[1.25] transition-all"
                                 />
                             </div>
                         ))}
@@ -809,7 +1003,7 @@ function Landing() {
                                     alt="Portfolio"
                                     className="w-full aspect-video"
                                 />
-                                <div className="w-full bg-white text-black p-2 md:p-4 whitespace-nowrap">
+                                <div className="w-full bg-white text-typography p-2 md:p-4 whitespace-nowrap">
                                     <div className="text-xs md:text-sm font-medium border-[3px] border-black px-4 py-0.5 w-fit mx-auto uppercase">
                                         {item.title}
                                     </div>
@@ -818,7 +1012,7 @@ function Landing() {
                                 <img
                                     src="/images/play.svg"
                                     alt=""
-                                    className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
+                                    className="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%] hover:scale-[1.25] transition-all"
                                 />
                             </div>
                         ))}</Marquee>
@@ -854,19 +1048,19 @@ function Landing() {
                         </p>
                     </div>
 
-                    <div className="pt-12 pb-6 overflow-hidden flex justify-center items-center gap-8 transition-all duration-300">
-                        <div className="max-w-[200px] rounded-lg relative">
-                            <img src={"/images/" + getPrevFeedback().cover} alt="Cover" className="w-full" />
+                    <div className="px-4 pt-12 pb-6 overflow-hidden flex justify-center items-center gap-8 transition-all duration-300">
+                        <div className="max-w-[200px] rounded-lg relative hidden md:block">
+                            <img src={"/images/" + getPrevFeedback().cover} alt="Cover" className="w-full opacity-75" />
                             <button className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:scale-110 transition-all" onClick={prevFeedback}><img src="/images/go-left.svg" alt="Play" className="w-auto h-[55px]" /></button>
                         </div>
                         {[
                             getActiveFeedback()
                         ].map((r, i) => (
                             <div className="max-w-2xl rounded-2xl pb-0.5 bg-[#413f3f] h-fit" key={i}>
-                                <div className="flex gap-8 px-6 py-8 border border-white/50 rounded-2xl">
+                                <div className="flex flex-col md:flex-row gap-8 px-6 py-8 border border-white/50 rounded-2xl">
                                     <div className="flex flex-col justify-between">
                                         <div>
-                                            <div className="flex gap-4">
+                                            <div className="flex flex-col md:flex-row gap-4">
                                                 <div>
                                                     <img
                                                         src={"/images/" + r.user.picture}
@@ -899,14 +1093,14 @@ function Landing() {
                                         <img
                                             src={"/images/" + r.cover}
                                             alt="Cover"
-                                            className="min-w-[200px]"
+                                            className="max-w-[250px] md:max-w-auto md:min-w-[200px]"
                                         />
                                     </div>
                                 </div>
                             </div>
                         ))}
-                        <div className="max-w-[200px] rounded-lg relative">
-                            <img src={"/images/" + getNextFeedback().cover} alt="Cover" className="w-full" />
+                        <div className="max-w-[200px] rounded-lg relative hidden md:block">
+                            <img src={"/images/" + getNextFeedback().cover} alt="Cover" className="w-full opacity-75" />
                             <button className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] hover:scale-110 transition-all" onClick={nextFeedback}><img src="/images/go-right.svg" alt="Play" className="w-auto h-[55px]" /></button>
                         </div>
                     </div>
@@ -914,7 +1108,7 @@ function Landing() {
                     <div className="flex justify-center gap-1.5">
                         {
                             userFeedbacks.map((item, index) => (
-                                <div key={index} className={"rounded-full cursor-pointer" + (index === getActiveFeedbackIndex() ? " bg-primary w-[28px] h-[12px]" : " bg-white w-[10px] h-[10px] hover:scale-110 transition-all")} onClick={()=>goToIndexOnFeedback(index)}></div>
+                                <div key={index} className={"rounded-full cursor-pointer" + (index === getActiveFeedbackIndex() ? " bg-primary w-[28px] h-[12px]" : " bg-white w-[10px] h-[10px] hover:scale-110 transition-all")} onClick={() => goToIndexOnFeedback(index)}></div>
                             ))
                         }
                     </div>
@@ -1012,7 +1206,7 @@ function Landing() {
                         ))}</Marquee>
                     </div>
 
-                    <div className="px-4 md:px-0">
+                    <div className="px-4 lg:px-0">
                         <div className="pb-8 pt-12">
                             <h1 className="text-center font-semibold uppercase text-xl md:text-3xl max-w-sm mx-auto">
                                 create your <span className="text-primary">video</span> pick a
@@ -1035,12 +1229,11 @@ function Landing() {
                             <label className="inline-flex items-center cursor-pointer">
                                 <input
                                     type="checkbox"
-                                    value=""
                                     checked={pricingCheck}
                                     onChange={(e) => setPricingCheck(e.currentTarget.checked)}
                                     className="sr-only peer"
                                 />
-                                <div className="relative w-12 h-7 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                                <div className="relative w-12 py-3 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                             </label>
                             <button
                                 className="font-semibold"
@@ -1053,9 +1246,9 @@ function Landing() {
                             </div>
                         </div>
 
-                        <div className="max-w-6xl mx-auto grid gap-4 py-8 lg:grid-cols-4">
-                            <div>
-                                <h1 className="font-semibold uppercase text-3xl max-w-sm">
+                        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row lg:justify-between gap-4 py-12">
+                            <div className="lg:me-6">
+                                <h1 className="!max-w-[200px] font-bold uppercase text-3xl max-w-sm">
                                     Pick Your <span className="text-primary">Plan</span>
                                 </h1>
 
@@ -1063,26 +1256,26 @@ function Landing() {
                                     {[
                                         {
                                             id: "plan-radio-1",
-                                            label: "Monthly Video Editing Service",
+                                            label: "Monthly Video Editing Service"
                                         },
                                         {
                                             id: "plan-radio-2",
-                                            label: "Unlimited Long-Form Video",
+                                            label: "Unlimited Long-Form Video"
                                         },
                                         {
                                             id: "plan-radio-3",
-                                            label: "Unlimited Reels/Tiktok/Shorts",
+                                            label: "Unlimited Reels/Tiktok/Shorts"
                                         },
                                         {
                                             id: "plan-radio-4",
-                                            label: "Single Video Edits",
+                                            label: "Single Video Edits"
                                         },
                                     ].map((p, i) => (
-                                        <div className="flex items-center my-2" key={i}>
+                                        <div className="flex items-center my-2 whitespace-nowrap" key={i}>
                                             <input
                                                 type="radio"
                                                 className={
-                                                    "w-4 h-4" + (pricingRadio == p.id && " font-semibold")
+                                                    "w-4 h-4 checked:bg-primary text-primary" + (pricingRadio == p.id && " font-semibold")
                                                 }
                                                 id={p.id}
                                                 checked={pricingRadio == p.id}
@@ -1090,7 +1283,7 @@ function Landing() {
                                             />
                                             <label
                                                 htmlFor={p.id}
-                                                className="ms-2 font-medium cursor-pointer"
+                                                className={"ms-2 font-medium" + (pricingRadio == p.id && " text-primary font-semibold")}
                                             >
                                                 {p.label}
                                             </label>
@@ -1104,115 +1297,63 @@ function Landing() {
                                     business.
                                 </p>
                             </div>
+                            {
+                                currentPlans?.map((p, i) => (
+                                    <div
+                                        key={i}
+                                        className="border-[2.5px] border-black p-4 flex flex-col justify-between bg-white"
+                                    >
+                                        <div>
+                                            <h1 className="font-semibold uppercase text-3xl text-primary">
+                                                {p.title}
+                                            </h1>
 
-                            {[
-                                {
-                                    title: "Starter",
-                                    subtle:
-                                        "Display stars in Google organic search result and showcase.",
-                                    features: [
-                                        "4 YouTube videos (HD/4K)",
-                                        "5 reels/shorts for any platform",
-                                        "Animated subtitles",
-                                        "Thumbnails for YouTube videos and reels/shorts",
-                                        "Video running time: 10 minutes",
-                                        "24/7 assistance via WhatsApp",
-                                    ],
-                                    cost: 1200,
-                                    discount: 1080,
-                                },
-                                {
-                                    title: "Creator",
-                                    subtle:
-                                        "Display stars in Google organic search result and showcase.",
-                                    features: [
-                                        "8 YouTube videos (HD/4K)",
-                                        "10 reels/shorts for any platform",
-                                        "Animated subtitles",
-                                        "Thumbnails for YouTube videos and reels/shorts",
-                                        "Video running time: 15 minutes",
-                                        "24/7 assistance via WhatsApp",
-                                        "Trending keywords suggestion",
-                                        "Live updates via dedicated CRM",
-                                    ],
-                                    cost: 2200,
-                                    discount: 1870,
-                                },
-                                {
-                                    title: "Studio",
-                                    subtle:
-                                        "Display stars in Google organic search result and showcase.",
-                                    features: [
-                                        "16 YouTube videos (HD/4K)",
-                                        "20 reels/shorts for any platform",
-                                        "Animated subtitles",
-                                        "Thumbnails for YouTube videos and reels/shorts",
-                                        "Video running time: 20 minutes",
-                                        "24/7 assistance via WhatsApp",
-                                        "Trending keyword suggestion",
-                                        "Live updates via dedicated CRM",
-                                        "Hook generation",
-                                    ],
-                                    cost: 3500,
-                                    discount: 2625,
-                                    term: "* Contact us for personalized pricing and services",
-                                },
-                            ].map((p, i) => (
-                                <div
-                                    key={i}
-                                    className="border-[2px] border-black p-4 flex flex-col justify-between bg-white"
-                                >
-                                    <div>
-                                        <h1 className="font-semibold uppercase text-3xl text-primary">
-                                            {p.title}
-                                        </h1>
+                                            <p className="mt-4 font-semibold">{p.subtle}</p>
 
-                                        <p className="mt-4 font-semibold">{p.subtle}</p>
+                                            <ul className="ms-4 mt-6 list-disc font-[300]">
+                                                {p.features.map((f, ii) => (
+                                                    <li key={ii} className="my-2">
+                                                        {f}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
 
-                                        <ul className="ms-4 mt-6 list-disc">
-                                            {p.features.map((f, ii) => (
-                                                <li key={ii} className="my-2">
-                                                    {f}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="mt-12 text-center">
-                                        <p className="text-2xl">
-                                            <del>${p.cost}</del>
-                                        </p>
-                                        <div className="flex gap-0.5 justify-center items-end">
-                                            <p className="text-3xl font-bold text-primary">
-                                                ${p.discount}
+                                        <div className="mt-12 text-center">
+                                            <p className="text-2xl" hidden={!p.discount}>
+                                                <del>${p.cost}</del>
                                             </p>
-                                            <p className="font-semibold text-lg">/mo</p>
-                                        </div>
-                                        <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8 select-none hover:scale-105 active:scale-100">
-                                            Select Plan
-                                        </button>
-                                        <div className="h-[80px] pt-5 font-semibold">
-                                            {p.term || ""}
+                                            <div className="flex gap-0.5 justify-center items-end">
+                                                <p className="text-3xl font-bold text-primary">
+                                                    ${p.discount || p.cost}
+                                                </p>
+                                                <p className="font-semibold text-lg">/{p.per}</p>
+                                            </div>
+                                            <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8 select-none hover:scale-105 active:scale-100">
+                                                Select Plan
+                                            </button>
+                                            <div className="h-[80px] pt-5 font-semibold">
+                                                {p.term || ""}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
                         </div>
                     </div>
                 </section>
 
                 <section className="bg-black bg-[url('/images/underpricing.png')] text-white bg-cover w-full pb-12 relative -z-10 rounded-t-3xl -mt-[280px] pt-[300px] px-4 text-center">
-                    <h1 className="uppercase text-4xl font-bold max-w-sm mx-auto">
+                    <h1 className="uppercase text-4xl font-bold max-w-md mx-auto">
                         Can't find any{" "}
                         <span className="text-secondary">suitable package?</span>
                     </h1>
 
-                    <p className="text-lg max-w-xl mx-auto my-5">
+                    <p className="text-lg max-w-lg mx-auto my-5">
                         if you cant find any suitable package here you can always ask for a
                         quote by reaching us out. We are here 24/7
                     </p>
 
-                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2 px-8 mt-10 select-none hover:scale-105 active:scale-100">
+                    <button className="block mx-auto bg-primary text-white text-lg font-semibold py-2 px-8 mt-10 select-none hover:scale-105 active:scale-100 cursor-pointer transition-all">
                         Get a Quote
                     </button>
                 </section>
@@ -1241,18 +1382,18 @@ function Landing() {
                                 <div className="grid grid-cols-2 gap-3">
                                     <input
                                         type="text"
-                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
                                         placeholder="Name"
                                     />
                                     <input
                                         type="tel"
-                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                        className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
                                         placeholder="Phone Number"
                                     />
                                 </div>
                                 <input
                                     type="tel"
-                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
                                     placeholder="Email"
                                 />
                                 <h2 className="font-semibold">I Want Video Editing for</h2>
@@ -1262,7 +1403,7 @@ function Landing() {
                                             htmlFor={`form-${s.toLowerCase()}`}
                                             key={i}
                                             className={
-                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80 flex gap-2 items-center select-none hover:scale-105 active:scale-100" +
+                                                "px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80 flex gap-2 items-center select-none hover:scale-105 active:scale-100" +
                                                 (formRadio == `form-${s.toLowerCase()}` &&
                                                     " bg-primary !border-primary text-white")
                                             }
@@ -1286,7 +1427,7 @@ function Landing() {
                                 <h2 className="font-semibold">Describe Your Project</h2>
                                 <textarea
                                     rows={5}
-                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-black/80"
+                                    className="px-4 py-2.5 border-2 border-black/50 placeholder:text-typography/80"
                                     placeholder="Your Text"
                                 ></textarea>
 
