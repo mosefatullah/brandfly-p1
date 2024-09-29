@@ -136,7 +136,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                     <div className='flex flex-col lg:flex-row gap-4 lg:justify-between mt-14'>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-3'>
                             <img src='/images/nazif.png' alt='CEO' className='w-[70px] h-[70px] rounded-full' />
                             <div>
                                 <h1 className='font-semibold text-[24px]'>Nazif Yealmy</h1>
