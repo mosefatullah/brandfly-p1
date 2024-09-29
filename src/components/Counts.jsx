@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import SlotCounter from './../components/SlotCounter';
 import { fadeUp } from '../utils/FadeUp';
 
-export default function Counts() {
+export default function Counts({ px = false }) {
     useEffect(() => {
         fadeUp();
     }, []);
     return (
         <>
-            <section className="w-full xl:max-w-7xl mx-auto p-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <section className={"w-full xl:max-w-7xl mx-auto py-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6" + (px ? " px-0" : " px-8")}>
                 {[
                     {
                         count: "45",

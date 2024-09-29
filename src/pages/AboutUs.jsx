@@ -1,4 +1,5 @@
 
+import Marquee from 'react-fast-marquee';
 import Counts from './../components/Counts';
 export default function AboutUs() {
     const services = [{
@@ -37,25 +38,47 @@ export default function AboutUs() {
     }]
     return (
         <>
-            <section className='py-8'>
+            <section className='pt-8 pb-12'>
                 <div className='text-center'>
                     <h3 className='text-3xl font-semibold'>Welcome To HypeCut</h3>
-                    <h1 className='mt-5 font-bold text-[75px] leading-[4.3rem] uppercase max-w-3xl mx-auto'>
+                    <h1 className='mt-5 font-bold text-4xl lg:text-[75px] lg:leading-[4.3rem] uppercase max-w-3xl mx-auto'>
                         your <span className='text-primary'>premier</span> video editing <span className='text-primary'>agency</span>
                     </h1>
                     <p className='mt-5 max-w-3xl mx-auto text-[22px] font-gothic'>Dedicated to transforming your raw footage into compelling visual stories. We specialize in editing videos for a diverse range of clients including influencers, podcasters, travelers, vloggers, and more.</p>
                 </div>
 
+                <div className="overflow-hidden relative">
+                    <Marquee>{["aut-1.png", "aut-2.png", "aut-3.png", "aut-4.png", "aut-5.png", "aut-2.png", "aut-3.png"].map((item, index) => (
+                        <div key={index} className='mx-3'><img key={index} src={`/images/${item}`} alt="author" className="h-[200px] md:max-h-[231px] lg:max-h-[300px] mt-12 object-cover" /></div>
+                    ))}</Marquee>
+                    <div className="absolute bottom-3 left-[50%] transform -translate-x-1/2 flex items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer gap-[1px] bg-white z-10">
+                        <div
+                            className="transition-all duration-300 select-none active:scale-100 group"
+                        >
+                            <p className="py-1.5 px-5 group-hover:scale-105">Services</p>
+                        </div>
+                        <div
+                            className="transition-all duration-300 select-none active:scale-100 group"
+                        >
+                            <p className="py-1.5 px-5 group-hover:scale-105">Pricing</p>
+                        </div>
+                        <button
+                            className="transition-all duration-300 select-none active:scale-100 bg-primary text-white group"
+                        >
+                            <p className="py-1.5 px-5 group-hover:scale-105">Let's Talk</p>
+                        </button>
+                    </div>
+                </div>
             </section>
-            <section className="bg-black text-white w-full px-4 py-8 mb-4">
-                <div className="flex flex-col md:flex-row md:justify-between gap-4 xl:max-w-7xl mx-auto p-4 pb-6">
-                    <div className='max-w-[929px] mx-4 mt-4'>
-                        <h1 className='text-[40px] leading-tight'>At HypeCut, we understand the unique challenges faced by individual creators or agency who struggle with the time-consuming task of video editing.</h1>
+            <section className="bg-black text-white w-full px-8 py-8 mb-4">
+                <div className="flex flex-col lg:flex-row lg:justify-between gap-4 xl:max-w-7xl mx-auto py-4 pb-6">
+                    <div className='max-w-[929px] mt-4'>
+                        <h1 className='text-3xl md:text-[40px] leading-tight'>At HypeCut, we understand the unique challenges faced by individual creators or agency who struggle with the time-consuming task of video editing.</h1>
                         <p className='mt-4 text-lg font-gothic'>Our mission is to provide high-quality, efficient, and creative editing solutions that help you focus on what you do best, creating amazing content.</p>
                     </div>
-                    <div className='flex-1 flex flex-col justify-end items-end gap-4'>
+                    <div className='flex-1 flex flex-col justify-end lg:items-end gap-4'>
                         <div>
-                            <div className='flex'>
+                            <div className='flex ps-3'>
                                 {["dummy1.svg", "dummy2.svg", "dummy3.svg"].map((item, index) => (
                                     <img key={index} src={`/images/${item}`} alt="dummy" className="w-20 h-20 rounded-full border-2 border-black -ml-4" />
                                 ))}
@@ -64,7 +87,7 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </div>
-                <Counts />
+                <Counts px />
             </section>
             <section className='px-4 py-12'>
                 <div className='text-center'>
@@ -72,7 +95,7 @@ export default function AboutUs() {
                     <p className='mt-1.5 max-w-3xl mx-auto text-[22px] font-gothic'>Something about our services in a few words so that someone can get rough idea about what they are gonna experience next.</p>
                 </div>
 
-                <div className='grid grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto p-8'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto p-8'>
                     {services.map((i, index) => (
                         <div key={index} className='border border-black p-4 max-w-[416px] pb-12 hover:scale-105 transition-all'>
                             <div>
@@ -96,11 +119,11 @@ export default function AboutUs() {
                     ))}
                 </div>
             </section>
-            <section className="bg-black text-white w-full px-4 py-16">
+            <section className="bg-black text-white w-full px-8 py-16">
                 <div className="max-w-5xl mx-auto">
                     <div className='flex flex-col lg:flex-row gap-4 lg:justify-between'>
                         <div>
-                            <h1 className='font-bold text-[42px] uppercase max-w-xs leading-tight'>Together we are <span className='text-secondary'>strong</span></h1>
+                            <h1 className='font-bold text-[42px] uppercase md:max-w-xs leading-tight'>Together we are <span className='text-secondary'>strong</span></h1>
                         </div>
                         <div className='max-w-xl'>
                             <p className='text-xl font-[100] tracking-wide'>
@@ -132,7 +155,7 @@ export default function AboutUs() {
                     </div>
                 </div>
             </section>
-            <section className='px-4 py-14'>
+            <section className='px-8 py-14'>
                 <div className='flex flex-col lg:flex-row gap-4 lg:gap-8 max-w-5xl mx-auto lg:items-center'>
                     <div>
                         <h1 className='font-bold text-[42px] uppercase max-w-3xl mx-auto'><span className='text-primary'>Join</span> our team</h1>
