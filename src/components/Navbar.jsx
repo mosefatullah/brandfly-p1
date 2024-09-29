@@ -33,7 +33,7 @@ export default function Navbar() {
                 </Marquee>
             </header>
             <nav id="navbar" className="w-full">
-                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8">
+                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8 lg:py-12">
                     <div id="navbar-logo">
                         <Link to="/"><img
                             src="/images/logo.png"

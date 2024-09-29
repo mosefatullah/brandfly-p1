@@ -8,10 +8,11 @@ export default {
    colors: {
     primary: "#ef1d25",
     secondary: "#fcde02",
-    typography: "#020202"
+    typography: "#020202",
    },
    fontFamily: {
     sans: ["Archivo", ...defaultTheme.fontFamily.sans],
+    gothic: ["Didact Gothic", ...defaultTheme.fontFamily.sans],
    },
   },
  },

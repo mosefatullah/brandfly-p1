@@ -111,7 +111,7 @@ function Landing() {
     return (
         <>
             <section>
-                <div className="px-8 w-full pt-8 pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
+                <div className="px-8 w-ful pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
                     <div>
                         <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
