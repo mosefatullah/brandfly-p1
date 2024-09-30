@@ -7,11 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "gh-pages -d dist --cname hypecut.io",
+    "deploy": "npm run build && npm run publish"
   },
   "dependencies": {
     "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/forms": "^0.5.9",
+    "gh-pages": "^6.1.1",
     "gsap": "^3.12.5",
     "react": "^18.2.0",
     "react-countup": "^6.5.3",
