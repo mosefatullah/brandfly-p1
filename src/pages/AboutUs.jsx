@@ -51,22 +51,22 @@ export default function AboutUs() {
                     <Marquee>{["aut-1.png", "aut-2.png", "aut-3.png", "aut-4.png", "aut-5.png", "aut-2.png", "aut-3.png"].map((item, index) => (
                         <div key={index} className='mx-3'><img key={index} src={`/images/${item}`} alt="author" className="h-[200px] md:max-h-[231px] lg:max-h-[300px] mt-12 object-cover" /></div>
                     ))}</Marquee>
-                    <div className="absolute bottom-3 left-[50%] transform -translate-x-1/2 flex items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer gap-[1px] bg-white z-10">
+                    <div className="absolute bottom-3 left-[50%] transform -translate-x-1/2 flex items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer bg-white z-10">
                         <div
-                            className="transition-all duration-300 select-none active:scale-100 group"
+                            className="transition-all duration-300 select-none hover:bg-primary hover:text-white active:scale-100 group"
                         >
                             <p className="py-1.5 px-5 group-hover:scale-105">Services</p>
                         </div>
                         <div
-                            className="transition-all duration-300 select-none active:scale-100 group"
+                            className="transition-all duration-300 select-none hover:bg-primary hover:text-white active:scale-100 group"
                         >
                             <p className="py-1.5 px-5 group-hover:scale-105">Pricing</p>
                         </div>
-                        <button
-                            className="transition-all duration-300 select-none active:scale-100 bg-primary text-white group"
+                        <div
+                            className="transition-all duration-300 select-none hover:bg-primary hover:text-white active:scale-100 group"
                         >
                             <p className="py-1.5 px-5 group-hover:scale-105">Let's Talk</p>
-                        </button>
+                        </div>
                     </div>
                 </div>
             </section>

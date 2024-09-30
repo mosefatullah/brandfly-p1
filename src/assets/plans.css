@@ -1,0 +1,16 @@
+.planRef {
+    animation-duration: 0.2s;
+}
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 10%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}

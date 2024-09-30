@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
     return (
@@ -12,9 +13,9 @@ export default function Footer() {
                         us work <span className="text-secondary">together</span>
                     </h1>
                     <div className="flex justify-center gap-8 mt-7 whitespace-nowrap">
-                        <button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
+                        <Link to="/pricing"><button className="bg-transparent border-[2.5px] border-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
                             See The Plans
-                        </button>
+                        </button></Link>
                         <button className="bg-primary text-white text-[16px] font-bold tracking-widest py-2 px-4 select-none hover:scale-105 active:scale-100">
                             Book a call
                         </button>
@@ -27,16 +28,16 @@ export default function Footer() {
                             <div className="flex gap-4 lg:gap-6">
                                 {[{
                                     icon: "li.svg",
-                                    link: "#",
+                                    link: "https://www.linkedin.com/company/hypecutoffcials/",
                                 }, {
                                     icon: "tw.svg",
                                     link: "#",
                                 }, {
                                     icon: "ins.svg",
-                                    link: "#",
+                                    link: "https://www.instagram.com/hypecutofficials",
                                 }, {
                                     icon: "fab.svg",
-                                    link: "#",
+                                    link: "https://www.facebook.com/profile.php?id=61560280655084",
                                 }, {
                                     icon: "yot.svg",
                                     link: "#",

@@ -1,7 +1,16 @@
+import { useState } from "react";
 import Marquee from "react-fast-marquee";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
+    const [hovered, setHovered] = useState(null);
+
+    const navItems = [
+        { title: "Home", link: "/" },
+        { title: "Pricing", link: "/pricing" },
+        { title: "About Us", link: "/about-us" },
+    ];
+
     return (
         <>
             <header
@@ -43,12 +52,16 @@ export default function Navbar() {
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer gap-[1px]">
-                            {[{ title: "Home", link: "/" }, { title: "Pricing", link: "/pricing" }, { title: "About Us", link: "/about-us" }].map((item, index) => (
+                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
+                            {navItems.map((item, index) => (
                                 <NavLink
                                     to={item.link}
                                     key={index}
-                                    className={({ isActive }) => "transition-all duration-300 select-none" + (isActive ? " bg-primary text-white" : " active:scale-100 hover:bg-primary hover:text-white group")}
+                                    onMouseEnter={() => setHovered(item.link)}
+                                    onMouseLeave={() => setHovered(null)}
+                                    className={({ isActive }) =>
+                                        `transition-all select-none ${isActive && "bg-primary text-white"} ${isActive && hovered && hovered !== item.link && "!bg-white !text-black"} ${!isActive && hovered && hovered === item.link && "bg-primary text-white"}`
+                                    }
                                 >
                                     <p className="py-1.5 px-5 group-hover:scale-105">{item.title}</p>
                                 </NavLink>
@@ -57,7 +70,7 @@ export default function Navbar() {
                     </div>
 
                     <div id="navbar-action">
-                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2px] border-black hover:bg-primary/70 transition-all select-none hover:scale-105 active:scale-100">
+                        <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2px] border-black hover:brightness-90 transition-all select-none hover:scale-105 active:scale-100">
                             Book a Demo
                         </button>
                     </div>

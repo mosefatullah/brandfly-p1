@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import "../assets/plans.css"
 
 export default function Plans() {
-    const [pricingCheck, setPricingCheck] = useState(false);
+    const [yearlyCheck, setYearlyCheck] = useState(false);
     const [pricingRadio, setPricingRadio] = useState("plan-radio-1");
 
     const plans = [
@@ -201,27 +202,42 @@ export default function Plans() {
         }
     ];
     const currentPlans = plans.filter(({ name }) => pricingRadio == name)[0]?.value;
+
+    const makeAnimation = () => {
+        const planRef = document.querySelectorAll(".planRef");
+        planRef.forEach((p) => {
+            p.classList.add("animate__animated", "animate__fadeInUp");
+            setTimeout(() => {
+                p.classList.remove("animate__animated", "animate__fadeInUp");
+            }, 200);
+        });
+    }
+
+    useEffect(() => {
+        makeAnimation();
+    }, [pricingRadio, yearlyCheck]);
+
     return (
         <>
             <div className="flex gap-2 items-center w-fit mx-auto">
                 <button
                     className="font-semibold"
-                    onClick={() => setPricingCheck(false)}
+                    onClick={() => setYearlyCheck(false)}
                 >
                     Monthly
                 </button>
                 <label className="inline-flex items-center cursor-pointer">
                     <input
                         type="checkbox"
-                        checked={pricingCheck}
-                        onChange={(e) => setPricingCheck(e.currentTarget.checked)}
+                        checked={yearlyCheck}
+                        onChange={(e) => setYearlyCheck(e.currentTarget.checked)}
                         className="sr-only peer"
                     />
                     <div className="relative w-12 py-3 border-2 border-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-primary after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
                 </label>
                 <button
                     className="font-semibold"
-                    onClick={() => setPricingCheck(true)}
+                    onClick={() => setYearlyCheck(true)}
                 >
                     Yearly
                 </button>
@@ -285,7 +301,8 @@ export default function Plans() {
                     currentPlans?.map((p, i) => (
                         <div
                             key={i}
-                            className="border-[2.5px] border-black p-4 flex flex-col justify-between bg-white lg:max-w-xs"
+                            className="planRef border-[2.5px] border-black p-4 flex flex-col justify-between bg-white lg:max-w-xs hover:shadow-[0_0px_20px_1px_rgba(0,0,0,0.3)]
+                            transition-all duration-300 hover:scale-105 hover:border-transparent"
                         >
                             <div>
                                 <h1 className="font-semibold uppercase text-3xl text-primary">
@@ -304,15 +321,24 @@ export default function Plans() {
                             </div>
 
                             <div className="mt-12 text-center">
-                                <p className="text-2xl" hidden={!p.discount}>
-                                    <del>${p.cost}</del>
-                                </p>
-                                <div className="flex gap-0.5 justify-center items-end">
-                                    <p className="text-3xl font-bold text-primary">
-                                        ${p.discount || p.cost}
+                                {yearlyCheck ? (<>
+                                    <p className="text-2xl" hidden={!p.discount}>
+                                        <del>${p.cost}</del>
                                     </p>
-                                    <p className="font-semibold text-lg">/{p.per}</p>
-                                </div>
+                                    <div className="flex gap-0.5 justify-center items-end">
+                                        <p className="text-3xl font-bold text-primary">
+                                            ${p.discount || p.cost}
+                                        </p>
+                                        <p className="font-semibold text-lg">/{p.per == "mo" ? "yr" : p.per}</p>
+                                    </div>
+                                </>) : (
+                                    <div className="flex gap-0.5 justify-center items-end">
+                                        <p className="text-3xl font-bold text-primary">
+                                            ${p.cost}
+                                        </p>
+                                        <p className="font-semibold text-lg">/{p.per}</p>
+                                    </div>
+                                )}
                                 <button className="block mx-auto bg-primary text-white text-lg font-semibold py-1.5 px-7 mt-8 select-none hover:scale-105 active:scale-100">
                                     Select Plan
                                 </button>

@@ -116,7 +116,7 @@ function Landing() {
                         <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
                         </h1>
-                        <p className="py-4 text-sm md:text-[24px] font-medium leading-8">
+                        <p className="py-4 text-sm md:text-[24px] font-medium leading-5">
                             Quick Turnaround And Exceptional Quality Guaranteed
                         </p>
 
