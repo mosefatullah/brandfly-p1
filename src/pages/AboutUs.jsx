@@ -95,7 +95,7 @@ export default function AboutUs() {
                     <p className='mt-1.5 max-w-3xl mx-auto text-[22px] font-gothic'>Something about our services in a few words so that someone can get rough idea about what they are gonna experience next.</p>
                 </div>
 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto p-8'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto lg:p-8'>
                     {services.map((i, index) => (
                         <div key={index} className='border border-black p-4 max-w-[416px] pb-12 hover:scale-105 transition-all'>
                             <div>

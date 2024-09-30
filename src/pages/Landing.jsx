@@ -362,8 +362,8 @@ function Landing() {
                 <section className="max-w-3xl mx-auto grid md:grid-cols-2 gap-8 mt-12 p-4 sm:p-8 lg:p-0">
                     <div>
                         <h1 className="text-xl md:text-3xl uppercase font-bold">
-                            The exclusive <span className="text-primary">services</span> you
-                            are going to <span className="text-primary">get</span>
+                            The exclusive<br /><span className="text-primary">services</span> you
+                            are<br /> going to <span className="text-primary">get</span>
                         </h1>
                         <p className="font-medium mt-5 text-lg">
                             Captivate Your Audience By:
