@@ -111,8 +111,8 @@ function Landing() {
     return (
         <>
             <section>
-                <div className="px-8 w-ful pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 lg:gap-4 items-center">
-                    <div>
+                <div className="px-8 w-ful pb-32 xl:pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 lg:gap-4 lg:items-center pt-18 xl:pt-0">
+                    <div className="lg:max-w-3xl lg:pe-56 xl:pe-0">
                         <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
                         </h1>
@@ -129,7 +129,7 @@ function Landing() {
                             </button></Link>
                         </div>
                     </div>
-                    <div className="relative ms-[33%] md:w-auto mx-auto lg:me-0 lg:ms-auto">
+                    <div className="relative ms-[33%] mx-auto lg:me-0 lg:ms-auto">
                         <img
                             src="/images/up.svg"
                             alt="Image"
