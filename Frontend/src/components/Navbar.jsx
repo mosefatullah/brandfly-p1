@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
     const [hovered, setHovered] = useState(null);
+    const [active, setActive] = useState(false);
 
     const navItems = [
         { title: "Home", link: "/" },
         { title: "Pricing", link: "/pricing" },
         { title: "About Us", link: "/about-us" },
     ];
+
+    useEffect(() => {
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 1024) setActive(null);
+            else setActive(false);
+        });
+    }, []);
 
     return (
         <>
@@ -42,7 +50,7 @@ export default function Navbar() {
                 </Marquee>
             </header>
             <nav id="navbar" className="w-full">
-                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto p-8 lg:py-12">
+                <div className="w-full xl:max-w-7xl flex justify-between items-center mx-auto px-4 py-8 lg:py-12">
                     <div id="navbar-logo">
                         <Link to="/"><img
                             src="/images/logo.png"
@@ -52,7 +60,7 @@ export default function Navbar() {
                     </div>
 
                     <div id="navbar-menu">
-                        <ul className="items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer">
+                        <ul className={"items-center text-sm font-medium uppercase tracking-widest lg:border-[2.5px] lg:border-black whitespace-nowrap flex flex-col lg:flex-row justify-center lg:justify-none cursor-pointer fixed lg:static top-0 left-0 w-full lg:w-auto h-screen lg:h-auto z-50 bg-white/60 backdrop-blur-lg lg:backdrop-blur-none gap-4 " + (!active && active !== null && "hidden")} onClick={() => active !== null && setActive(false)}>
                             {navItems.map((item, index) => (
                                 <NavLink
                                     to={item.link}
@@ -69,9 +77,14 @@ export default function Navbar() {
                         </ul>
                     </div>
 
-                    <div id="navbar-action">
+                    <div id="navbar-action" className="flex gap-3">
                         <button className="bg-primary text-white text-[14px] font-medium uppercase tracking-widest py-1 px-2 md:py-1.5 md:px-4 border-[2px] border-black hover:brightness-90 transition-all select-none hover:scale-105 active:scale-100">
                             Book a Demo
+                        </button>
+                        <button className="lg:hidden text-[14px] font-medium uppercase tracking-widest py-1 px-1.5 md:py-1.5 md:px-4 border-[2px] border-black hover:brightness-90 transition-all select-none hover:scale-105 active:scale-100" onClick={() => setActive(!active)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
                         </button>
                     </div>
                 </div>

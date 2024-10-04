@@ -103,7 +103,7 @@ function Landing() {
 
     useEffect(() => {
         setInterval(() => {
-            prevFeedback();
+            nextFeedback();
         }, 5000);
     }, []);
 
@@ -111,12 +111,12 @@ function Landing() {
     return (
         <>
             <section>
-                <div className="px-8 w-ful pb-32 xl:pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 lg:gap-4 lg:items-center pt-18 xl:pt-0">
-                    <div className="lg:max-w-3xl lg:pe-56 xl:pe-0">
-                        <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight lg:leading-[2.7rem] font-bold uppercase">
+                <div className="px-4 w-full pb-32 xl:pb-20 xl:min-h-[85vh] xl:max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 lg:gap-4 lg:items-center pt-18 xl:pt-0">
+                    <div className="lg:max-w-2xl lg:pe-56 xl:pe-0">
+                        <h1 className="text-2xl md:text-3xl xl:text-[42px] leading-tight xl:leading-[2.7rem] font-bold uppercase">
                             Transform Your Footages Into Professional-Grade And Catchy Videos
                         </h1>
-                        <p className="py-4 text-sm md:text-[24px] font-medium leading-5">
+                        <p className="py-4 md:text-[24px] font-medium md:leading-6 xl:leading-5">
                             Quick Turnaround And Exceptional Quality Guaranteed
                         </p>
 
@@ -163,7 +163,7 @@ function Landing() {
                 </div>
             </section>
             <section className="w-full bg-black -mt-7 rounded-t-2xl">
-                <section className="pt-14 pb-8 px-4 md:px-0 ">
+                <section className="pt-14 pb-8">
                     <Marquee className="whitespace-nowrap overflow-hidden">{[
                         "company1.png",
                         "company2.png",

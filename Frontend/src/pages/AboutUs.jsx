@@ -39,9 +39,9 @@ export default function AboutUs() {
     return (
         <>
             <section className='pt-8 pb-12'>
-                <div className='text-center'>
-                    <h3 className='text-3xl font-semibold'>Welcome To HypeCut</h3>
-                    <h1 className='mt-5 font-bold text-4xl lg:text-[75px] lg:leading-[4.3rem] uppercase max-w-3xl mx-auto'>
+                <div className='text-center px-4'>
+                    <h3 className='text-2xl md:text-3xl font-semibold'>Welcome To HypeCut</h3>
+                    <h1 className='mt-5 font-bold text-3xl md:text-5xl lg:text-[75px] lg:leading-[4.3rem] uppercase max-w-3xl mx-auto'>
                         your <span className='text-primary'>premier</span> video editing <span className='text-primary'>agency</span>
                     </h1>
                     <p className='mt-5 max-w-3xl mx-auto text-[22px] font-gothic'>Dedicated to transforming your raw footage into compelling visual stories. We specialize in editing videos for a diverse range of clients including influencers, podcasters, travelers, vloggers, and more.</p>
@@ -49,7 +49,7 @@ export default function AboutUs() {
 
                 <div className="overflow-hidden relative">
                     <Marquee>{["aut-1.png", "aut-2.png", "aut-3.png", "aut-4.png", "aut-5.png", "aut-2.png", "aut-3.png"].map((item, index) => (
-                        <div key={index} className='mx-3'><img key={index} src={`/images/${item}`} alt="author" className="h-[200px] md:max-h-[231px] lg:max-h-[300px] mt-12 object-cover" /></div>
+                        <div key={index} className='mx-1.5 md:mx-3'><img key={index} src={`/images/${item}`} alt="author" className="h-[170px] md:h-[200px] md:max-h-[231px] lg:max-h-[300px] mt-12 object-cover" /></div>
                     ))}</Marquee>
                     <div className="absolute bottom-3 left-[50%] transform -translate-x-1/2 flex items-center text-sm font-medium uppercase tracking-widest border-[2.5px] border-black whitespace-nowrap hidden lg:flex cursor-pointer bg-white z-10">
                         <div
@@ -95,9 +95,9 @@ export default function AboutUs() {
                     <p className='mt-1.5 max-w-3xl mx-auto text-[22px] font-gothic'>Something about our services in a few words so that someone can get rough idea about what they are gonna experience next.</p>
                 </div>
 
-                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto lg:p-8'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 max-w-7xl mx-auto lg:p-8 mt-8'>
                     {services.map((i, index) => (
-                        <div key={index} className='border border-black p-4 max-w-[416px] pb-12 hover:scale-105 transition-all'>
+                        <div key={index} className='border border-black p-4 md:max-w-[416px] pb-12 hover:scale-105 transition-all'>
                             <div>
                                 <img src={`/images/${i.image}`} alt={i.title} className='w-full' />
                             </div>
